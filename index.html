@@ -100,6 +100,13 @@
             transform: scale(1.02);
         }
 
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 13px;
+            width: auto;
+            min-width: 70px;
+        }
+
         .switch {
             text-align: center;
             margin-top: 15px;
@@ -131,7 +138,7 @@
             font-size: 13px;
         }
 
-        /* ===== СООБЩЕСТВО ===== */
+        /* ===== ПРОФИЛЬ ===== */
         .profile-header {
             display: flex;
             align-items: center;
@@ -159,14 +166,132 @@
             font-size: 14px;
         }
 
+        /* ===== ДРУЗЬЯ ===== */
+        .friend-section {
+            margin: 15px 0;
+        }
+        .friend-section h3 {
+            color: #b78cf5;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .friend-list {
+            list-style: none;
+            padding: 0;
+        }
+        .friend-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: #120b1f;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            border: 1px solid #3a2852;
+        }
+        .friend-list .friend-name {
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .friend-list .friend-name:hover {
+            color: #b78cf5;
+        }
+        .friend-input {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+        .friend-input input {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid #3a2852;
+            background: #120b1f;
+            color: #fff;
+            min-width: 120px;
+        }
+        .friend-input button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #6a3f9e;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .friend-input button:hover {
+            background: #8b5fcf;
+        }
+
+        /* ===== ЛИЧНЫЙ ЧАТ ===== */
+        .private-chat {
+            background: #120b1f;
+            border-radius: 12px;
+            padding: 15px;
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid #3a2852;
+            margin: 10px 0;
+        }
+        .private-chat .msg {
+            padding: 4px 0;
+            border-bottom: 1px solid #1e1233;
+            font-size: 14px;
+        }
+        .private-chat .msg .name {
+            color: #b78cf5;
+            font-weight: bold;
+        }
+        .private-chat .msg .time {
+            color: #5a4a72;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+        .private-chat .msg .from-me {
+            color: #2ecc71;
+        }
+
+        .private-input {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .private-input input {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid #3a2852;
+            background: #120b1f;
+            color: #fff;
+            min-width: 120px;
+        }
+        .private-input button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #6a3f9e;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .private-input button:hover {
+            background: #8b5fcf;
+        }
+
+        .back-btn {
+            margin-top: 8px;
+        }
+
+        /* ===== ОБЩИЙ ЧАТ ===== */
         .chat-box {
             background: #120b1f;
             border-radius: 12px;
             padding: 15px;
-            height: 200px;
+            height: 150px;
             overflow-y: auto;
             border: 1px solid #3a2852;
-            margin: 15px 0;
+            margin: 10px 0;
         }
         .chat-box .msg {
             padding: 4px 0;
@@ -212,6 +337,26 @@
 
         .logout-btn {
             margin-top: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .nav-buttons .btn {
+            flex: 1;
+            min-width: 80px;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .status-online {
+            color: #2ecc71;
+        }
+        .status-offline {
+            color: #666;
         }
     </style>
 </head>
@@ -284,14 +429,51 @@
             </div>
         </div>
 
-        <h2 style="color:#b78cf5; font-size:18px;">💬 Общий чат</h2>
-        <div class="chat-box" id="chatBox">
-            <div style="color:#5a4a72; text-align:center; padding:20px;">Сообщений пока нет</div>
+        <!-- ===== НАВИГАЦИЯ ===== -->
+        <div class="nav-buttons">
+            <button class="btn btn-primary" onclick="showChatTab('global')">💬 Общий</button>
+            <button class="btn btn-green" onclick="showChatTab('friends')">👥 Друзья</button>
+            <button class="btn btn-primary" onclick="showChatTab('private')" id="privateChatBtn" style="display:none;">💬 Личный</button>
         </div>
 
-        <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Введите сообщение...">
-            <button onclick="sendMessage()">📤 Отправить</button>
+        <!-- ===== ВКЛАДКА: ОБЩИЙ ЧАТ ===== -->
+        <div id="tab-global">
+            <h2 style="color:#b78cf5; font-size:18px;">💬 Общий чат</h2>
+            <div class="chat-box" id="chatBox">
+                <div style="color:#5a4a72; text-align:center; padding:20px;">Сообщений пока нет</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Введите сообщение...">
+                <button onclick="sendMessage()">📤 Отправить</button>
+            </div>
+        </div>
+
+        <!-- ===== ВКЛАДКА: ДРУЗЬЯ ===== -->
+        <div id="tab-friends" class="hidden">
+            <h2 style="color:#b78cf5; font-size:18px;">👥 Друзья</h2>
+            <div class="friend-section">
+                <div class="friend-input">
+                    <input type="text" id="friendInput" placeholder="Имя друга">
+                    <button onclick="addFriend()">➕ Добавить</button>
+                </div>
+                <div id="friendMsg" style="color:#8b7aa8; font-size:13px; margin-bottom:8px;"></div>
+                <ul class="friend-list" id="friendList">
+                    <li style="color:#5a4a72; text-align:center; padding:15px;">У тебя пока нет друзей</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===== ВКЛАДКА: ЛИЧНЫЙ ЧАТ ===== -->
+        <div id="tab-private" class="hidden">
+            <h2 style="color:#b78cf5; font-size:18px;" id="privateChatTitle">💬 Чат с другом</h2>
+            <div class="private-chat" id="privateChatBox">
+                <div style="color:#5a4a72; text-align:center; padding:20px;">Напиши другу первым</div>
+            </div>
+            <div class="private-input">
+                <input type="text" id="privateInput" placeholder="Введите сообщение...">
+                <button onclick="sendPrivateMessage()">📤 Отправить</button>
+            </div>
+            <button class="btn btn-small back-btn" onclick="showChatTab('friends')">← Назад к друзьям</button>
         </div>
 
         <button class="btn btn-red logout-btn" onclick="logout()">🚪 Выйти</button>
@@ -320,7 +502,26 @@
         localStorage.setItem('chatMessages', JSON.stringify(messages));
     }
 
+    function getPrivateChat(friendName) {
+        const key = 'privateChat_' + friendName;
+        return JSON.parse(localStorage.getItem(key) || '[]');
+    }
+
+    function savePrivateChat(friendName, messages) {
+        const key = 'privateChat_' + friendName;
+        localStorage.setItem(key, JSON.stringify(messages));
+    }
+
+    function getFriends(username) {
+        return JSON.parse(localStorage.getItem('friends_' + username) || '[]');
+    }
+
+    function saveFriends(username, friends) {
+        localStorage.setItem('friends_' + username, JSON.stringify(friends));
+    }
+
     let currentUser = null;
+    let currentFriend = null;
 
     // =======================================================
     // ===== ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ =====
@@ -358,6 +559,28 @@
         document.getElementById('profileAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
         document.getElementById('profileName').textContent = currentUser.name;
         renderChat();
+        renderFriends();
+        showChatTab('global');
+    }
+
+    // =======================================================
+    // ===== ВКЛАДКИ =====
+    // =======================================================
+
+    function showChatTab(tab) {
+        document.getElementById('tab-global').classList.add('hidden');
+        document.getElementById('tab-friends').classList.add('hidden');
+        document.getElementById('tab-private').classList.add('hidden');
+        document.getElementById('privateChatBtn').style.display = 'none';
+
+        if (tab === 'global') {
+            document.getElementById('tab-global').classList.remove('hidden');
+        } else if (tab === 'friends') {
+            document.getElementById('tab-friends').classList.remove('hidden');
+        } else if (tab === 'private') {
+            document.getElementById('tab-private').classList.remove('hidden');
+            document.getElementById('privateChatBtn').style.display = '';
+        }
     }
 
     // =======================================================
@@ -417,121 +640,4 @@
     // =======================================================
 
     function login() {
-        const name = document.getElementById('loginName').value.trim();
-        const pass = document.getElementById('loginPass').value.trim();
-        const msg = document.getElementById('msg');
-
-        if (!name || !pass) {
-            msg.textContent = '❌ Заполни все поля!';
-            msg.style.color = '#e74c3c';
-            return;
-        }
-
-        const users = getUsers();
-        const user = users.find(u => u.name === name && u.password === pass);
-
-        if (user) {
-            currentUser = user;
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            msg.textContent = '✅ Добро пожаловать, ' + name + '!';
-            msg.style.color = '#2ecc71';
-            setTimeout(() => {
-                showCommunity();
-            }, 500);
-        } else {
-            msg.textContent = '❌ Неверный логин или пароль!';
-            msg.style.color = '#e74c3c';
-        }
-    }
-
-    // =======================================================
-    // ===== ВЫХОД =====
-    // =======================================================
-
-    function logout() {
-        localStorage.removeItem('currentUser');
-        currentUser = null;
-        showMain();
-    }
-
-    // =======================================================
-    // ===== ЧАТ =====
-    // =======================================================
-
-    function renderChat() {
-        const box = document.getElementById('chatBox');
-        const messages = getChat();
-
-        if (messages.length === 0) {
-            box.innerHTML = '<div style="color:#5a4a72; text-align:center; padding:20px;">Сообщений пока нет</div>';
-            return;
-        }
-
-        box.innerHTML = messages.map(m => `
-            <div class="msg">
-                <span class="name">${m.name}</span>
-                <span class="time">${m.time}</span>
-                <div>${m.text}</div>
-            </div>
-        `).join('');
-
-        box.scrollTop = box.scrollHeight;
-    }
-
-    function sendMessage() {
-        if (!currentUser) {
-            showAuth('login');
-            return;
-        }
-
-        const input = document.getElementById('chatInput');
-        const text = input.value.trim();
-
-        if (!text) return;
-
-        const messages = getChat();
-        messages.push({
-            name: currentUser.name,
-            time: new Date().toLocaleTimeString('ru-RU'),
-            text: text
-        });
-        saveChat(messages);
-        input.value = '';
-        renderChat();
-    }
-
-    // =======================================================
-    // ===== ENTER =====
-    // =======================================================
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            if (!document.getElementById('loginForm').classList.contains('hidden')) {
-                login();
-                return;
-            }
-            if (!document.getElementById('registerForm').classList.contains('hidden')) {
-                register();
-                return;
-            }
-            if (!document.getElementById('communitySection').classList.contains('hidden')) {
-                sendMessage();
-            }
-        }
-    });
-
-    // =======================================================
-    // ===== СТАРТ =====
-    // =======================================================
-
-    const saved = localStorage.getItem('currentUser');
-    if (saved) {
-        currentUser = JSON.parse(saved);
-        showCommunity();
-    } else {
-        showMain();
-    }
-</script>
-
-</body>
-</html>
+        const name = document
