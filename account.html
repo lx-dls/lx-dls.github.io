@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход — CRASH DLC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a0a2e;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .box {
+            background: #2d1b4e;
+            padding: 45px 40px;
+            border-radius: 20px;
+            border: 1px solid #7b3fbf;
+            box-shadow: 0 0 50px rgba(123, 63, 191, 0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #c084fc;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            color: #a78bfa;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid #7b3fbf;
+            background: #1a0a2e;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+        }
+        .input-group input:focus {
+            border-color: #c084fc;
+            box-shadow: 0 0 15px rgba(123, 63, 191, 0.3);
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #7b3fbf;
+            color: #fff;
+        }
+        .btn:hover {
+            background: #9b5fd9;
+            transform: scale(1.02);
+        }
+        .btn-green {
+            background: #2ecc71;
+        }
+        .btn-green:hover {
+            background: #27ae60;
+        }
+        .switch {
+            text-align: center;
+            margin-top: 18px;
+            color: #a78bfa;
+            font-size: 14px;
+        }
+        .switch a {
+            color: #c084fc;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .switch a:hover {
+            text-decoration: underline;
+        }
+        #msg {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            min-height: 22px;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #7b5f9f;
+            font-size: 13px;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #c084fc;
+        }
+        .footer {
+            color: #5b3f7f;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h1 id="formTitle">🔐 Вход</h1>
+
+        <!-- ВХОД -->
+        <div id="loginForm">
+            <div class="input-group">
+                <label>👤 Логин</label>
+                <input type="text" id="loginName" placeholder="Введите логин">
+            </div>
+            <div class="input-group">
+                <label>🔑 Пароль</label>
+                <input type="password" id="loginPass" placeholder="Введите пароль">
+            </div>
+            <button class="btn" onclick="login()">Войти</button>
+            <div class="switch">
+                Нет аккаунта? <a onclick="showRegister()">Зарегистрируйся</a>
+            </div>
+        </div>
+
+        <!-- РЕГИСТРАЦИЯ -->
+        <div id="registerForm" class="hidden">
+            <div class="input-group">
+                <label>👤 Логин</label>
+                <input type="text" id="regName" placeholder="Придумай логин">
+            </div>
+            <div class="input-group">
+                <label>📧 Почта</label>
+                <input type="email" id="regEmail" placeholder="Введи почту">
+            </div>
+            <div class="input-group">
+                <label>🔑 Пароль</label>
+                <input type="password" id="regPass" placeholder="Придумай пароль">
+            </div>
+            <div class="input-group">
+                <label>🔁 Повтори пароль</label>
+                <input type="password" id="regPass2" placeholder="Повтори пароль">
+            </div>
+            <button class="btn btn-green" onclick="register()">Зарегистрироваться</button>
+            <div class="switch">
+                Уже есть аккаунт? <a onclick="showLogin()">Войти</a>
+            </div>
+        </div>
+
+        <div id="msg"></div>
+        <a href="https://lxneoorig.github.io/crashDLC/" class="back-link">← Назад на главную</a>
+    </div>
+
+    <div class="footer">© 2026 CRASH DLC</div>
+
+    <script>
+        function showRegister() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+            document.getElementById('formTitle').textContent = '📝 Регистрация';
+            document.getElementById('msg').textContent = '';
+        }
+
+        function showLogin() {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('formTitle').textContent = '🔐 Вход';
+            document.getElementById('msg').textContent = '';
+        }
+
+        function register() {
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const pass = document.getElementById('regPass').value;
+            const pass2 = document.getElementById('regPass2').value;
+            const msg = document.getElementById('msg');
+
+            if (!name || !email || !pass || !pass2) {
+                msg.textContent = '❌ Заполни все поля!';
+                msg.style.color = '#e74c3c';
+                return;
+            }
+
+            if (pass.length < 4) {
+                msg.textContent = '❌ Пароль минимум 4 символа!';
+                msg.style.color = '#e74c3c';
+                return;
+            }
+
+            if (pass !== pass2) {
+                msg.textContent = '❌ Пароли не совпадают!';
+                msg.style.color = '#e74c3c';
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+
+            if (users.find(u => u.name === name)) {
+                msg.textContent = '❌ Такой логин уже занят!';
+                msg.style.color = '#e74c3c';
+                return;
+            }
+
+            users.push({
+                name: name,
+                email: email,
+                password: pass,
+                date: new Date().toLocaleDateString('ru-RU')
+            });
+
+            localStorage.setItem('users', JSON.stringify(users));
+            msg.textContent = '✅ Регистрация успешна! Теперь войди.';
+            msg.style.color = '#2ecc71';
+
+            setTimeout(() => {
+                showLogin();
+                document.getElementById('loginName').value = name;
+            }, 1500);
+        }
+
+        function login() {
+            const name = document.getElementById('loginName').value.trim();
+            const pass = document.getElementById('loginPass').value.trim();
+            const msg = document.getElementById('msg');
+
+            if (!name || !pass) {
+                msg.textContent = '❌ Заполни все поля!';
+                msg.style.color = '#e74c3c';
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.name === name && u.password === pass);
+
+            if (user) {
+                // Сохраняем сессию
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                // Перекидываем на основную страницу
+                window.location.href = 'https://lxneoorig.github.io/crashDLC/main.html';
+            } else {
+                msg.textContent = '❌ Неверный логин или пароль!';
+                msg.style.color = '#e74c3c';
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                if (!document.getElementById('loginForm').classList.contains('hidden')) {
+                    login();
+                } else {
+                    register();
+                }
+            }
+        });
+
+        // Если уже залогинен — сразу в главную
+        if (localStorage.getItem('currentUser')) {
+            window.location.href = 'https://lxneoorig.github.io/crashDLC/main.html';
+        }
+    </script>
+
+</body>
+</html>
