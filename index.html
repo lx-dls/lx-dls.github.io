@@ -63,7 +63,6 @@
         }
 
         .btn {
-            width: 100%;
             padding: 14px;
             border: none;
             border-radius: 12px;
@@ -71,6 +70,7 @@
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            width: 100%;
         }
 
         .btn-primary {
@@ -101,10 +101,9 @@
         }
 
         .btn-small {
-            padding: 8px 16px;
+            padding: 6px 14px;
             font-size: 13px;
             width: auto;
-            min-width: 70px;
         }
 
         .switch {
@@ -166,15 +165,45 @@
             font-size: 14px;
         }
 
-        /* ===== ДРУЗЬЯ ===== */
-        .friend-section {
-            margin: 15px 0;
+        /* ===== НАВИГАЦИЯ ===== */
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
         }
-        .friend-section h3 {
-            color: #b78cf5;
-            font-size: 16px;
+        .nav-buttons .btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        /* ===== ДРУЗЬЯ ===== */
+        .friend-input {
+            display: flex;
+            gap: 10px;
             margin-bottom: 10px;
         }
+        .friend-input input {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid #3a2852;
+            background: #120b1f;
+            color: #fff;
+        }
+        .friend-input button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #6a3f9e;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .friend-input button:hover {
+            background: #8b5fcf;
+        }
+
         .friend-list {
             list-style: none;
             padding: 0;
@@ -191,27 +220,50 @@
         }
         .friend-list .friend-name {
             cursor: pointer;
-            transition: 0.2s;
+            font-weight: 600;
         }
         .friend-list .friend-name:hover {
             color: #b78cf5;
         }
-        .friend-input {
+
+        /* ===== ЧАТЫ ===== */
+        .chat-box {
+            background: #120b1f;
+            border-radius: 12px;
+            padding: 15px;
+            height: 150px;
+            overflow-y: auto;
+            border: 1px solid #3a2852;
+            margin: 10px 0;
+        }
+        .chat-box .msg {
+            padding: 4px 0;
+            border-bottom: 1px solid #1e1233;
+            font-size: 14px;
+        }
+        .chat-box .msg .name {
+            color: #b78cf5;
+            font-weight: bold;
+        }
+        .chat-box .msg .time {
+            color: #5a4a72;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+
+        .chat-input {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
         }
-        .friend-input input {
+        .chat-input input {
             flex: 1;
             padding: 10px 16px;
             border-radius: 10px;
             border: 1px solid #3a2852;
             background: #120b1f;
             color: #fff;
-            min-width: 120px;
         }
-        .friend-input button {
+        .chat-input button {
             padding: 10px 20px;
             border: none;
             border-radius: 10px;
@@ -220,7 +272,7 @@
             font-weight: 600;
             cursor: pointer;
         }
-        .friend-input button:hover {
+        .chat-input button:hover {
             background: #8b5fcf;
         }
 
@@ -255,7 +307,6 @@
         .private-input {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
         }
         .private-input input {
             flex: 1;
@@ -264,7 +315,6 @@
             border: 1px solid #3a2852;
             background: #120b1f;
             color: #fff;
-            min-width: 120px;
         }
         .private-input button {
             padding: 10px 20px;
@@ -281,82 +331,20 @@
 
         .back-btn {
             margin-top: 8px;
-        }
-
-        /* ===== ОБЩИЙ ЧАТ ===== */
-        .chat-box {
-            background: #120b1f;
-            border-radius: 12px;
-            padding: 15px;
-            height: 150px;
-            overflow-y: auto;
-            border: 1px solid #3a2852;
-            margin: 10px 0;
-        }
-        .chat-box .msg {
-            padding: 4px 0;
-            border-bottom: 1px solid #1e1233;
+            padding: 8px;
             font-size: 14px;
-        }
-        .chat-box .msg .name {
-            color: #b78cf5;
-            font-weight: bold;
-        }
-        .chat-box .msg .time {
-            color: #5a4a72;
-            font-size: 11px;
-            margin-left: 8px;
-        }
-
-        .chat-input {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .chat-input input {
-            flex: 1;
-            padding: 10px 16px;
-            border-radius: 10px;
-            border: 1px solid #3a2852;
-            background: #120b1f;
-            color: #fff;
-            min-width: 150px;
-        }
-        .chat-input button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            background: #6a3f9e;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .chat-input button:hover {
-            background: #8b5fcf;
+            width: 100%;
         }
 
         .logout-btn {
             margin-top: 15px;
         }
 
-        .nav-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        .nav-buttons .btn {
-            flex: 1;
-            min-width: 80px;
-            padding: 10px;
-            font-size: 14px;
-        }
-
-        .status-online {
-            color: #2ecc71;
-        }
-        .status-offline {
-            color: #666;
+        #friendMsg {
+            color: #8b7aa8;
+            font-size: 13px;
+            margin-bottom: 8px;
+            min-height: 20px;
         }
     </style>
 </head>
@@ -419,7 +407,7 @@
         <div class="footer">© 2026 CRASH DLC</div>
     </div>
 
-    <!-- ===== СООБЩЕСТВО (ПОСЛЕ ВХОДА) ===== -->
+    <!-- ===== СООБЩЕСТВО ===== -->
     <div id="communitySection" class="hidden">
         <div class="profile-header">
             <div class="avatar" id="profileAvatar">L</div>
@@ -429,51 +417,45 @@
             </div>
         </div>
 
-        <!-- ===== НАВИГАЦИЯ ===== -->
         <div class="nav-buttons">
-            <button class="btn btn-primary" onclick="showChatTab('global')">💬 Общий</button>
-            <button class="btn btn-green" onclick="showChatTab('friends')">👥 Друзья</button>
-            <button class="btn btn-primary" onclick="showChatTab('private')" id="privateChatBtn" style="display:none;">💬 Личный</button>
+            <button class="btn btn-primary" onclick="showTab('global')">💬 Общий</button>
+            <button class="btn btn-green" onclick="showTab('friends')">👥 Друзья</button>
         </div>
 
-        <!-- ===== ВКЛАДКА: ОБЩИЙ ЧАТ ===== -->
+        <!-- ===== ОБЩИЙ ЧАТ ===== -->
         <div id="tab-global">
-            <h2 style="color:#b78cf5; font-size:18px;">💬 Общий чат</h2>
             <div class="chat-box" id="chatBox">
                 <div style="color:#5a4a72; text-align:center; padding:20px;">Сообщений пока нет</div>
             </div>
             <div class="chat-input">
                 <input type="text" id="chatInput" placeholder="Введите сообщение...">
-                <button onclick="sendMessage()">📤 Отправить</button>
+                <button onclick="sendMessage()">📤</button>
             </div>
         </div>
 
-        <!-- ===== ВКЛАДКА: ДРУЗЬЯ ===== -->
+        <!-- ===== ДРУЗЬЯ ===== -->
         <div id="tab-friends" class="hidden">
-            <h2 style="color:#b78cf5; font-size:18px;">👥 Друзья</h2>
-            <div class="friend-section">
-                <div class="friend-input">
-                    <input type="text" id="friendInput" placeholder="Имя друга">
-                    <button onclick="addFriend()">➕ Добавить</button>
-                </div>
-                <div id="friendMsg" style="color:#8b7aa8; font-size:13px; margin-bottom:8px;"></div>
-                <ul class="friend-list" id="friendList">
-                    <li style="color:#5a4a72; text-align:center; padding:15px;">У тебя пока нет друзей</li>
-                </ul>
+            <div class="friend-input">
+                <input type="text" id="friendInput" placeholder="Имя друга">
+                <button onclick="addFriend()">➕</button>
             </div>
+            <div id="friendMsg"></div>
+            <ul class="friend-list" id="friendList">
+                <li style="color:#5a4a72; text-align:center; padding:15px;">У тебя пока нет друзей</li>
+            </ul>
         </div>
 
-        <!-- ===== ВКЛАДКА: ЛИЧНЫЙ ЧАТ ===== -->
+        <!-- ===== ЛИЧНЫЙ ЧАТ ===== -->
         <div id="tab-private" class="hidden">
-            <h2 style="color:#b78cf5; font-size:18px;" id="privateChatTitle">💬 Чат с другом</h2>
+            <h3 style="color:#b78cf5; margin-bottom:5px;" id="privateChatTitle">💬 Чат</h3>
             <div class="private-chat" id="privateChatBox">
-                <div style="color:#5a4a72; text-align:center; padding:20px;">Напиши другу первым</div>
+                <div style="color:#5a4a72; text-align:center; padding:20px;">Напиши другу</div>
             </div>
             <div class="private-input">
-                <input type="text" id="privateInput" placeholder="Введите сообщение...">
-                <button onclick="sendPrivateMessage()">📤 Отправить</button>
+                <input type="text" id="privateInput" placeholder="Сообщение...">
+                <button onclick="sendPrivateMessage()">📤</button>
             </div>
-            <button class="btn btn-small back-btn" onclick="showChatTab('friends')">← Назад к друзьям</button>
+            <button class="btn btn-primary back-btn" onclick="showTab('friends')">← Назад</button>
         </div>
 
         <button class="btn btn-red logout-btn" onclick="logout()">🚪 Выйти</button>
@@ -503,13 +485,11 @@
     }
 
     function getPrivateChat(friendName) {
-        const key = 'privateChat_' + friendName;
-        return JSON.parse(localStorage.getItem(key) || '[]');
+        return JSON.parse(localStorage.getItem('privateChat_' + friendName) || '[]');
     }
 
     function savePrivateChat(friendName, messages) {
-        const key = 'privateChat_' + friendName;
-        localStorage.setItem(key, JSON.stringify(messages));
+        localStorage.setItem('privateChat_' + friendName, JSON.stringify(messages));
     }
 
     function getFriends(username) {
@@ -524,7 +504,7 @@
     let currentFriend = null;
 
     // =======================================================
-    // ===== ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ =====
+    // ===== ПЕРЕКЛЮЧЕНИЕ =====
     // =======================================================
 
     function showMain() {
@@ -560,18 +540,13 @@
         document.getElementById('profileName').textContent = currentUser.name;
         renderChat();
         renderFriends();
-        showChatTab('global');
+        showTab('global');
     }
 
-    // =======================================================
-    // ===== ВКЛАДКИ =====
-    // =======================================================
-
-    function showChatTab(tab) {
+    function showTab(tab) {
         document.getElementById('tab-global').classList.add('hidden');
         document.getElementById('tab-friends').classList.add('hidden');
         document.getElementById('tab-private').classList.add('hidden');
-        document.getElementById('privateChatBtn').style.display = 'none';
 
         if (tab === 'global') {
             document.getElementById('tab-global').classList.remove('hidden');
@@ -579,7 +554,7 @@
             document.getElementById('tab-friends').classList.remove('hidden');
         } else if (tab === 'private') {
             document.getElementById('tab-private').classList.remove('hidden');
-            document.getElementById('privateChatBtn').style.display = '';
+            renderPrivateChat();
         }
     }
 
@@ -640,4 +615,42 @@
     // =======================================================
 
     function login() {
-        const name = document
+        const name = document.getElementById('loginName').value.trim();
+        const pass = document.getElementById('loginPass').value.trim();
+        const msg = document.getElementById('msg');
+
+        if (!name || !pass) {
+            msg.textContent = '❌ Заполни все поля!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+
+        const users = getUsers();
+        const user = users.find(u => u.name === name && u.password === pass);
+
+        if (user) {
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            msg.textContent = '✅ Добро пожаловать, ' + name + '!';
+            msg.style.color = '#2ecc71';
+            setTimeout(() => {
+                showCommunity();
+            }, 500);
+        } else {
+            msg.textContent = '❌ Неверный логин или пароль!';
+            msg.style.color = '#e74c3c';
+        }
+    }
+
+    // =======================================================
+    // ===== ВЫХОД =====
+    // =======================================================
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        currentUser = null;
+        currentFriend = null;
+        showMain();
+    }
+
+    // ==============================
