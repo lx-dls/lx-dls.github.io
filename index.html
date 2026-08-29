@@ -1,11 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRASH DLC</title>
-    <meta charset="utf-8">
-    <meta http-equiv="refresh" content="0; url=account.html">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #0f0a1a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .box {
+            background: #1e1233;
+            padding: 50px 40px;
+            border-radius: 24px;
+            text-align: center;
+            border: 1px solid #6a3f9e;
+            box-shadow: 0 0 60px rgba(106, 63, 158, 0.25);
+            max-width: 450px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #b78cf5;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .sub {
+            color: #8b7aa8;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .versions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .versions span {
+            background: #2a1b42;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            color: #b78cf5;
+            border: 1px solid #6a3f9e;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 50px;
+            background: #6a3f9e;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #8b5fcf;
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(106, 63, 158, 0.3);
+        }
+
+        .btn-green {
+            background: #2ecc71;
+        }
+
+        .btn-green:hover {
+            background: #27ae60;
+            box-shadow: 0 0 30px rgba(46, 204, 113, 0.2);
+        }
+
+        .status {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #5a4a72;
+        }
+
+        .status .online {
+            color: #2ecc71;
+        }
+
+        .links {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            color: #b78cf5;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 1px solid #6a3f9e;
+            transition: 0.3s;
+        }
+
+        .links a:hover {
+            background: #6a3f9e;
+            color: #fff;
+        }
+
+        .footer {
+            color: #5a4a72;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
-    Переход на страницу входа...
+    <div class="box">
+        <h1>🚀 CRASH DLC</h1>
+        <div class="sub">Установи клиент и участвуй в бета-тесте</div>
+
+        <div class="versions">
+            <span>⚡ 1.21.4</span>
+            <span>⚡ 1.21.11</span>
+            <span>🧪 BETA TEST</span>
+        </div>
+
+        <div class="btn-group">
+            <a href="account.html" class="btn">🔑 Войти</a>
+            <a href="account.html" class="btn btn-green">📝 Зарегистрироваться</a>
+        </div>
+
+        <div class="status">
+            <span class="online">●</span> Сервер: <span class="online">онлайн</span>
+        </div>
+
+        <div class="links">
+            <a href="https://discord.gg/DanFgwuyd" target="_blank">💬 Discord</a>
+            <a href="https://t.me/crashDLC" target="_blank">📲 Telegram</a>
+        </div>
+    </div>
+
+    <div class="footer">© 2026 CRASH DLC</div>
 </body>
 </html>
