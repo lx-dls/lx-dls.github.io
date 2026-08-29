@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход / Регистрация — CRASH DLC</title>
+    <title>CRASH DLC — Профиль</title>
     <style>
         * {
             margin: 0;
@@ -15,301 +15,617 @@
             background: #1a0a2e;
             color: #fff;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
         }
 
-        .box {
+        /* ===== ШАПКА ===== */
+        .header {
             background: #2d1b4e;
-            padding: 45px 40px;
-            border-radius: 20px;
-            border: 1px solid #7b3fbf;
-            box-shadow: 0 0 50px rgba(123, 63, 191, 0.3);
-            max-width: 400px;
-            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #7b3fbf;
+            flex-wrap: wrap;
         }
-
-        h1 {
-            text-align: center;
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
             color: #c084fc;
-            font-size: 32px;
-            margin-bottom: 25px;
+        }
+        .logo span {
+            color: #fff;
+        }
+        .nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            color: #a78bfa;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav a:hover {
+            background: #7b3fbf;
+            color: #fff;
+        }
+        .nav .active {
+            background: #7b3fbf;
+            color: #fff;
+        }
+        .logout-btn {
+            color: #e74c3c !important;
+        }
+        .logout-btn:hover {
+            background: #e74c3c !important;
+            color: #fff !important;
         }
 
-        .input-group {
-            margin-bottom: 15px;
+        /* ===== КОНТЕЙНЕР ===== */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
 
-        .input-group label {
-            display: block;
+        /* ===== КАРТОЧКИ ===== */
+        .card {
+            background: #2d1b4e;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #7b3fbf;
+        }
+        .card h2 {
+            color: #c084fc;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        .card p {
             color: #a78bfa;
             font-size: 14px;
-            margin-bottom: 4px;
         }
 
-        .input-group input {
-            width: 100%;
-            padding: 12px 16px;
+        /* ===== ПРОФИЛЬ ===== */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #7b3fbf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        /* ===== ДРУЗЬЯ ===== */
+        .friend-list {
+            list-style: none;
+            padding: 0;
+        }
+        .friend-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 14px;
+            background: #1a0a2e;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            border: 1px solid #3d2b5e;
+        }
+        .friend-list .add-btn {
+            padding: 4px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #2ecc71;
+            color: #fff;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .friend-list .add-btn:hover {
+            background: #27ae60;
+        }
+        .friend-list .remove-btn {
+            padding: 4px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #e74c3c;
+            color: #fff;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .friend-list .remove-btn:hover {
+            background: #c0392b;
+        }
+        .friend-list .online {
+            color: #2ecc71;
+            font-size: 12px;
+        }
+        .friend-list .offline {
+            color: #666;
+            font-size: 12px;
+        }
+        .friend-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .friend-input input {
+            flex: 1;
+            padding: 10px 16px;
             border-radius: 10px;
             border: 1px solid #7b3fbf;
             background: #1a0a2e;
             color: #fff;
-            font-size: 15px;
-            outline: none;
-            transition: 0.3s;
+            font-size: 14px;
+            min-width: 150px;
         }
-
-        .input-group input:focus {
+        .friend-input input:focus {
             border-color: #c084fc;
-            box-shadow: 0 0 15px rgba(123, 63, 191, 0.3);
+            outline: none;
         }
-
-        .btn {
-            width: 100%;
-            padding: 14px;
+        .friend-input button {
+            padding: 10px 24px;
             border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
+            border-radius: 10px;
             background: #7b3fbf;
             color: #fff;
-        }
-
-        .btn:hover {
-            background: #9b5fd9;
-            transform: scale(1.02);
-        }
-
-        .btn-green {
-            background: #2ecc71;
-        }
-
-        .btn-green:hover {
-            background: #27ae60;
-        }
-
-        .switch {
-            text-align: center;
-            margin-top: 18px;
-            color: #a78bfa;
-            font-size: 14px;
-        }
-
-        .switch a {
-            color: #c084fc;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: bold;
-            text-decoration: none;
+            transition: 0.3s;
+        }
+        .friend-input button:hover {
+            background: #9b5fd9;
         }
 
-        .switch a:hover {
-            text-decoration: underline;
+        /* ===== ОБЩИЙ ЧАТ ===== */
+        .chat-box {
+            background: #1a0a2e;
+            border-radius: 12px;
+            padding: 15px;
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #3d2b5e;
+            margin-bottom: 10px;
         }
-
-        #msg {
-            text-align: center;
-            margin-top: 15px;
+        .chat-box .msg {
+            padding: 6px 0;
+            border-bottom: 1px solid #2d1b4e;
             font-size: 14px;
-            font-weight: bold;
-            min-height: 22px;
         }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: #7b5f9f;
-            font-size: 13px;
-            text-decoration: none;
-        }
-
-        .back-link:hover {
+        .chat-box .msg .name {
             color: #c084fc;
+            font-weight: bold;
+        }
+        .chat-box .msg .time {
+            color: #666;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+        .chat-box .msg .text {
+            color: #ddd;
+        }
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid #7b3fbf;
+            background: #1a0a2e;
+            color: #fff;
+            font-size: 14px;
+            min-width: 150px;
+        }
+        .chat-input input:focus {
+            border-color: #c084fc;
+            outline: none;
+        }
+        .chat-input button {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 10px;
+            background: #7b3fbf;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .chat-input button:hover {
+            background: #9b5fd9;
+        }
+
+        /* ===== СТРАНИЦЫ ===== */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        /* ===== КНОПКИ МЕНЮ ===== */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .menu-card {
+            background: #1a0a2e;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #3d2b5e;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .menu-card:hover {
+            border-color: #7b3fbf;
+            background: #2d1b4e;
+        }
+        .menu-card .icon {
+            font-size: 32px;
+        }
+        .menu-card .title {
+            color: #c084fc;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 15px;
+            }
+            .nav {
+                justify-content: center;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .friend-input {
+                flex-direction: column;
+            }
+            .chat-input {
+                flex-direction: column;
+            }
         }
 
         .footer {
+            text-align: center;
+            padding: 20px;
             color: #5b3f7f;
             font-size: 13px;
+            border-top: 1px solid #2d1b4e;
             margin-top: 20px;
         }
-
-        .hidden {
-            display: none !important;
+        .status-online {
+            color: #2ecc71;
+            font-size: 13px;
         }
     </style>
 </head>
 <body>
 
-    <div class="box">
+<!-- ===== ШАПКА ===== -->
+<div class="header">
+    <div class="logo">CRASH <span>DLC</span></div>
+    <div class="nav">
+        <a onclick="showPage('profile')" id="navProfile" class="active">👤 Профиль</a>
+        <a onclick="showPage('community')" id="navCommunity">🌐 Сообщество</a>
+        <a onclick="showPage('friends')" id="navFriends">👥 Друзья</a>
+        <a onclick="showPage('chat')" id="navChat">💬 Чат</a>
+        <a onclick="logout()" class="logout-btn">🚪 Выйти</a>
+    </div>
+</div>
 
-        <h1 id="formTitle">🔐 Вход</h1>
+<!-- ===== КОНТЕЙНЕР ===== -->
+<div class="container">
 
-        <!-- ФОРМА ВХОДА -->
-        <div id="loginForm">
-            <div class="input-group">
-                <label>👤 Логин</label>
-                <input type="text" id="loginName" placeholder="Введите логин">
-            </div>
-            <div class="input-group">
-                <label>🔑 Пароль</label>
-                <input type="password" id="loginPass" placeholder="Введите пароль">
-            </div>
-            <button class="btn" onclick="login()">Войти</button>
-            <div class="switch">
-                Нет аккаунта? <a onclick="showRegister()">Зарегистрируйся</a>
+    <!-- ===== ПРОФИЛЬ ===== -->
+    <div class="page active" id="page-profile">
+        <div class="card">
+            <div class="profile-header">
+                <div class="avatar" id="profileAvatar">L</div>
+                <div>
+                    <h2 id="profileName">Логин</h2>
+                    <p id="profileEmail">почта@example.com</p>
+                    <p><span class="status-online">● В сети</span></p>
+                </div>
             </div>
         </div>
-
-        <!-- ФОРМА РЕГИСТРАЦИИ -->
-        <div id="registerForm" class="hidden">
-            <div class="input-group">
-                <label>👤 Логин</label>
-                <input type="text" id="regName" placeholder="Придумай логин">
-            </div>
-            <div class="input-group">
-                <label>📧 Почта</label>
-                <input type="email" id="regEmail" placeholder="Введи почту">
-            </div>
-            <div class="input-group">
-                <label>🔑 Пароль</label>
-                <input type="password" id="regPass" placeholder="Придумай пароль">
-            </div>
-            <div class="input-group">
-                <label>🔁 Повтори пароль</label>
-                <input type="password" id="regPass2" placeholder="Повтори пароль">
-            </div>
-            <button class="btn btn-green" onclick="register()">Зарегистрироваться</button>
-            <div class="switch">
-                Уже есть аккаунт? <a onclick="showLogin()">Войти</a>
+        <div class="card">
+            <h2>📊 Статистика</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; text-align:center;">
+                <div style="background:#1a0a2e; padding:15px; border-radius:10px;">
+                    <div style="color:#c084fc; font-size:24px; font-weight:700;" id="friendCount">0</div>
+                    <div style="color:#888; font-size:13px;">Друзей</div>
+                </div>
+                <div style="background:#1a0a2e; padding:15px; border-radius:10px;">
+                    <div style="color:#c084fc; font-size:24px; font-weight:700;" id="msgCount">0</div>
+                    <div style="color:#888; font-size:13px;">Сообщений</div>
+                </div>
+                <div style="background:#1a0a2e; padding:15px; border-radius:10px;">
+                    <div style="color:#c084fc; font-size:24px; font-weight:700;">✅</div>
+                    <div style="color:#888; font-size:13px;">Статус</div>
+                </div>
             </div>
         </div>
-
-        <div id="msg"></div>
-
-        <a href="https://lxneoorig.github.io/crashDLC/" class="back-link">← Назад на главную</a>
-
+        <div class="card">
+            <h2>📋 Быстрый доступ</h2>
+            <div class="menu-grid">
+                <div class="menu-card" onclick="showPage('friends')">
+                    <div class="icon">👥</div>
+                    <div class="title">Друзья</div>
+                </div>
+                <div class="menu-card" onclick="showPage('chat')">
+                    <div class="icon">💬</div>
+                    <div class="title">Общий чат</div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="footer">© 2026 CRASH DLC</div>
+    <!-- ===== СООБЩЕСТВО ===== -->
+    <div class="page" id="page-community">
+        <div class="card">
+            <h2>🌐 Сообщество</h2>
+            <p>Здесь ты можешь находить друзей и общаться!</p>
+            <br>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; text-align:center;">
+                <div style="background:#1a0a2e; padding:20px; border-radius:10px;">
+                    <div style="color:#c084fc; font-size:28px;">👥</div>
+                    <div style="color:#888; font-size:13px;">Всего пользователей</div>
+                    <div style="color:#fff; font-size:22px; font-weight:700;" id="totalUsers">1</div>
+                </div>
+                <div style="background:#1a0a2e; padding:20px; border-radius:10px;">
+                    <div style="color:#c084fc; font-size:28px;">🟢</div>
+                    <div style="color:#888; font-size:13px;">В сети</div>
+                    <div style="color:#2ecc71; font-size:22px; font-weight:700;" id="onlineUsers">1</div>
+                </div>
+                <div style="background:#1a0a2e; padding:20px; border-radius:10px;">
+                    <div style="color:#c084fc; font-size:28px;">💬</div>
+                    <div style="color:#888; font-size:13px;">Сообщений</div>
+                    <div style="color:#fff; font-size:22px; font-weight:700;" id="totalMessages">0</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>📢 Последние активные</h2>
+            <div id="activeUsersList" style="color:#a78bfa; font-size:14px;">
+                <p>Пока никого нет...</p>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        // ===== ПЕРЕКЛЮЧЕНИЕ ФОРМ =====
-        function showRegister() {
-            document.getElementById('loginForm').classList.add('hidden');
-            document.getElementById('registerForm').classList.remove('hidden');
-            document.getElementById('formTitle').textContent = '📝 Регистрация';
-            document.getElementById('msg').textContent = '';
-        }
+    <!-- ===== ДРУЗЬЯ ===== -->
+    <div class="page" id="page-friends">
+        <div class="card">
+            <h2>👥 Мои друзья</h2>
+            <p>Добавляй друзей и общайся с ними!</p>
+            <div class="friend-input">
+                <input type="text" id="friendInput" placeholder="Введите имя друга">
+                <button onclick="addFriend()">➕ Добавить</button>
+            </div>
+            <div id="friendMsg" style="color:#a78bfa; font-size:13px; margin-top:8px;"></div>
+            <br>
+            <ul class="friend-list" id="friendList">
+                <li style="color:#666; text-align:center; padding:20px;">У тебя пока нет друзей</li>
+            </ul>
+        </div>
+    </div>
 
-        function showLogin() {
-            document.getElementById('registerForm').classList.add('hidden');
-            document.getElementById('loginForm').classList.remove('hidden');
-            document.getElementById('formTitle').textContent = '🔐 Вход';
-            document.getElementById('msg').textContent = '';
-        }
+    <!-- ===== ОБЩИЙ ЧАТ ===== -->
+    <div class="page" id="page-chat">
+        <div class="card">
+            <h2>💬 Общий чат</h2>
+            <p>Общайся со всем сообществом!</p>
+            <br>
+            <div class="chat-box" id="chatBox">
+                <div style="color:#666; text-align:center; padding:20px;">Сообщений пока нет</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Введите сообщение...">
+                <button onclick="sendMessage()">📤 Отправить</button>
+            </div>
+        </div>
+    </div>
 
-        // ===== РЕГИСТРАЦИЯ =====
-        function register() {
-            const name = document.getElementById('regName').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const pass = document.getElementById('regPass').value;
-            const pass2 = document.getElementById('regPass2').value;
-            const msg = document.getElementById('msg');
+</div>
 
-            if (!name || !email || !pass || !pass2) {
-                msg.textContent = '❌ Заполни все поля!';
-                msg.style.color = '#e74c3c';
-                return;
-            }
+<div class="footer">© 2026 CRASH DLC</div>
 
-            if (pass.length < 4) {
-                msg.textContent = '❌ Пароль должен быть минимум 4 символа!';
-                msg.style.color = '#e74c3c';
-                return;
-            }
+<script>
+    // ===== ТЕКУЩИЙ ПОЛЬЗОВАТЕЛЬ =====
+    let currentUser = null;
 
-            if (pass !== pass2) {
-                msg.textContent = '❌ Пароли не совпадают!';
-                msg.style.color = '#e74c3c';
-                return;
-            }
-
-            // Сохраняем в localStorage
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-
-            if (users.find(u => u.name === name)) {
-                msg.textContent = '❌ Такой логин уже занят!';
-                msg.style.color = '#e74c3c';
-                return;
-            }
-
-            users.push({
-                name: name,
-                email: email,
-                password: pass,
-                date: new Date().toLocaleDateString('ru-RU')
-            });
-
-            localStorage.setItem('users', JSON.stringify(users));
-
-            msg.textContent = '✅ Регистрация успешна! Теперь войди.';
-            msg.style.color = '#2ecc71';
-
-            setTimeout(() => {
-                showLogin();
-                document.getElementById('loginName').value = name;
-            }, 1500);
-        }
-
-        // ===== ВХОД =====
-        function login() {
-            const name = document.getElementById('loginName').value.trim();
-            const pass = document.getElementById('loginPass').value.trim();
-            const msg = document.getElementById('msg');
-
-            if (!name || !pass) {
-                msg.textContent = '❌ Заполни все поля!';
-                msg.style.color = '#e74c3c';
-                return;
-            }
-
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
-            const user = users.find(u => u.name === name && u.password === pass);
-
-            if (user) {
-                msg.textContent = '✅ Добро пожаловать, ' + name + '!';
-                msg.style.color = '#2ecc71';
-                localStorage.setItem('currentUser', JSON.stringify(user));
-            } else {
-                msg.textContent = '❌ Неверный логин или пароль!';
-                msg.style.color = '#e74c3c';
-            }
-        }
-
-        // ===== ENTER =====
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                if (!document.getElementById('loginForm').classList.contains('hidden')) {
-                    login();
-                } else {
-                    register();
-                }
-            }
-        });
-
-        // ===== ЕСЛИ УЖЕ ЗАЛОГИНЕН =====
+    // ===== ЗАГРУЗКА =====
+    function loadUser() {
         const saved = localStorage.getItem('currentUser');
         if (saved) {
-            const user = JSON.parse(saved);
-            document.getElementById('msg').textContent = '✅ Ты уже вошёл как ' + user.name;
-            document.getElementById('msg').style.color = '#2ecc71';
-            document.getElementById('loginName').value = user.name;
+            currentUser = JSON.parse(saved);
+            return true;
         }
-    </script>
+        return false;
+    }
 
-</body>
-</html>
+    // ===== СОХРАНЕНИЕ =====
+    function saveUsers(users) {
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    function getUsers() {
+        return JSON.parse(localStorage.getItem('users') || '[]');
+    }
+
+    function saveChat(messages) {
+        localStorage.setItem('chatMessages', JSON.stringify(messages));
+    }
+
+    function getChat() {
+        return JSON.parse(localStorage.getItem('chatMessages') || '[]');
+    }
+
+    // ===== СТРАНИЦЫ =====
+    function showPage(page) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-' + page).classList.add('active');
+
+        document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+        const map = {
+            'profile': 'navProfile',
+            'community': 'navCommunity',
+            'friends': 'navFriends',
+            'chat': 'navChat'
+        };
+        const el = document.getElementById(map[page]);
+        if (el) el.classList.add('active');
+
+        if (page === 'profile') updateProfile();
+        if (page === 'friends') renderFriends();
+        if (page === 'chat') renderChat();
+        if (page === 'community') updateCommunity();
+    }
+
+    // ===== ОБНОВЛЕНИЕ ПРОФИЛЯ =====
+    function updateProfile() {
+        if (!currentUser) return;
+        document.getElementById('profileAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+        document.getElementById('profileName').textContent = currentUser.name;
+        document.getElementById('profileEmail').textContent = currentUser.email || 'почта не указана';
+
+        const friends = JSON.parse(localStorage.getItem('friends_' + currentUser.name) || '[]');
+        document.getElementById('friendCount').textContent = friends.length;
+
+        const chat = getChat();
+        document.getElementById('msgCount').textContent = chat.length;
+    }
+
+    // ===== СООБЩЕСТВО =====
+    function updateCommunity() {
+        const users = getUsers();
+        document.getElementById('totalUsers').textContent = users.length;
+        document.getElementById('onlineUsers').textContent = users.length; // все онлайн
+        const chat = getChat();
+        document.getElementById('totalMessages').textContent = chat.length;
+
+        const list = document.getElementById('activeUsersList');
+        if (users.length === 0) {
+            list.innerHTML = '<p>Пока никого нет...</p>';
+        } else {
+            list.innerHTML = users.slice(-5).reverse().map(u =>
+                '<div style="padding:4px 0;">🟢 ' + u.name + ' <span style="color:#666;font-size:12px;">был(а) сегодня</span></div>'
+            ).join('');
+        }
+    }
+
+    // ===== ДРУЗЬЯ =====
+    function renderFriends() {
+        if (!currentUser) return;
+        const friends = JSON.parse(localStorage.getItem('friends_' + currentUser.name) || '[]');
+        const list = document.getElementById('friendList');
+
+        if (friends.length === 0) {
+            list.innerHTML = '<li style="color:#666; text-align:center; padding:20px;">У тебя пока нет друзей</li>';
+            return;
+        }
+
+        list.innerHTML = friends.map(f => `
+            <li>
+                <span>👤 ${f} <span class="online">● в сети</span></span>
+                <button class="remove-btn" onclick="removeFriend('${f}')">✖ Удалить</button>
+            </li>
+        `).join('');
+    }
+
+    function addFriend() {
+        if (!currentUser) return;
+        const input = document.getElementById('friendInput');
+        const name = input.value.trim();
+        const msg = document.getElementById('friendMsg');
+
+        if (!name) {
+            msg.textContent = '❌ Введи имя друга!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+
+        if (name === currentUser.name) {
+            msg.textContent = '❌ Нельзя добавить самого себя!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+
+        const users = getUsers();
+        if (!users.find(u => u.name === name)) {
+            msg.textContent = '❌ Пользователь не найден!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+
+        let friends = JSON.parse(localStorage.getItem('friends_' + currentUser.name) || '[]');
+        if (friends.includes(name)) {
+            msg.textContent = '❌ Этот друг уже есть!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+
+        friends.push(name);
+        localStorage.setItem('friends_' + currentUser.name, JSON.stringify(friends));
+        input.value = '';
+        msg.textContent = '✅ Друг добавлен!';
+        msg.style.color = '#2ecc71';
+        renderFriends();
+        updateProfile();
+    }
+
+    function removeFriend(name) {
+        if (!currentUser) return;
+        let friends = JSON.parse(localStorage.getItem('friends_' + currentUser.name) || '[]');
+        friends = friends.filter(f => f !== name);
+        localStorage.setItem('friends_' + currentUser.name, JSON.stringify(friends));
+        renderFriends();
+        updateProfile();
+    }
+
+    // ===== ЧАТ =====
+    function renderChat() {
+        const chat = getChat();
+        const box = document.getElementById('chatBox');
+
+        if (chat.length === 0) {
+            box.innerHTML = '<div style="color:#666; text-align:center; padding:20px;">Сообщений пока нет</div>';
+            return;
+        }
+
+        box.innerHTML = chat.map(m => `
+            <div class="msg">
+                <span class="name">${m.name}</span>
+                <span class="time">${m.time}</span>
+                <div class="text">${m.text}</div>
+            </div>
+        `).join('');
+
+        box.scrollTop = box.scrollHeight;
+    }
+
+    function sendMessage() {
+        if (!currentUser) {
+            showToast('Сначала войди!',
