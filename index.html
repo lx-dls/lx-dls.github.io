@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRASH DLC</title>
     <style>
+        /* ===== БАЗА ===== */
         * {
             margin: 0;
             padding: 0;
@@ -20,6 +21,22 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            transition: background 0.3s ease;
+        }
+
+        /* ===== РАДУЖНЫЙ ФОН ===== */
+        body.rainbow {
+            animation: rainbow 3s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background: #ff0000; }
+            17% { background: #ff8800; }
+            33% { background: #ffff00; }
+            50% { background: #00ff00; }
+            67% { background: #0088ff; }
+            83% { background: #8800ff; }
+            100% { background: #ff0000; }
         }
 
         .container {
@@ -30,6 +47,22 @@
             box-shadow: 0 0 60px rgba(106, 63, 158, 0.25);
             width: 100%;
             max-width: 500px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .container.rainbow-border {
+            border-color: #ff0000;
+            animation: rainbowBorder 3s linear infinite;
+        }
+
+        @keyframes rainbowBorder {
+            0% { border-color: #ff0000; }
+            17% { border-color: #ff8800; }
+            33% { border-color: #ffff00; }
+            50% { border-color: #00ff00; }
+            67% { border-color: #0088ff; }
+            83% { border-color: #8800ff; }
+            100% { border-color: #ff0000; }
         }
 
         h1 {
@@ -97,6 +130,24 @@
         }
         .btn-red:hover {
             background: #c0392b;
+            transform: scale(1.02);
+        }
+
+        .btn-gold {
+            background: #f39c12;
+            color: #fff;
+        }
+        .btn-gold:hover {
+            background: #e67e22;
+            transform: scale(1.02);
+        }
+
+        .btn-purple {
+            background: #9b59b6;
+            color: #fff;
+        }
+        .btn-purple:hover {
+            background: #8e44ad;
             transform: scale(1.02);
         }
 
@@ -213,13 +264,53 @@
         .logout-btn {
             margin-top: 15px;
         }
+
+        /* ===== АДМИН-ПАНЕЛЬ ===== */
+        .admin-panel {
+            background: #120b1f;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #f39c12;
+        }
+
+        .admin-panel h3 {
+            color: #f39c12;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .admin-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .admin-row .btn {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .admin-badge {
+            display: inline-block;
+            background: #f39c12;
+            color: #0f0a1a;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
 
 <div class="container" id="app">
 
-    <!-- ===== ГЛАВНАЯ (ВИЗИТКА) ===== -->
+    <!-- ===== ГЛАВНАЯ ===== -->
     <div id="mainSection">
         <h1>🚀 CRASH DLC</h1>
         <p style="text-align:center; color:#8b7aa8; margin-bottom:20px;">
@@ -294,15 +385,37 @@
             <button onclick="sendMessage()">📤 Отправить</button>
         </div>
 
+        <!-- ===== АДМИН-ПАНЕЛЬ (только для lxneo и fridiz) ===== -->
+        <div id="adminPanel" class="hidden admin-panel">
+            <h3>👑 Админ-панель</h3>
+
+            <div class="admin-row">
+                <button class="btn btn-gold" onclick="toggleMusic()">🎵 Музыка</button>
+                <button class="btn btn-purple" onclick="toggleRainbow()">🌈 Радуга</button>
+                <button class="btn btn-primary" onclick="resetStyle()">↩ Исходное</button>
+            </div>
+
+            <div style="text-align:center; color:#888; font-size:12px; margin-top:8px;">
+                <span id="musicStatus">🎵 Выкл</span> &nbsp;|&nbsp; <span id="rainbowStatus">🌈 Выкл</span>
+            </div>
+        </div>
+
         <button class="btn btn-red logout-btn" onclick="logout()">🚪 Выйти</button>
     </div>
 
 </div>
 
+<!-- ===== АУДИОПЛЕЕР (скрытый) ===== -->
+<audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
 <script>
     // =======================================================
-    // ===== ДАННЫЕ (ХРАНЯТСЯ В localStorage) =====
+    // ===== ДАННЫЕ =====
     // =======================================================
+
+    const ADMINS = ['lxneo', 'fridiz'];
 
     function getUsers() {
         return JSON.parse(localStorage.getItem('users') || '[]');
@@ -321,6 +434,9 @@
     }
 
     let currentUser = null;
+    let musicPlaying = false;
+    let rainbowActive = false;
+    const audio = document.getElementById('bgMusic');
 
     // =======================================================
     // ===== ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ =====
@@ -358,6 +474,13 @@
         document.getElementById('profileAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
         document.getElementById('profileName').textContent = currentUser.name;
         renderChat();
+
+        // Проверяем, админ ли пользователь
+        if (ADMINS.includes(currentUser.name)) {
+            document.getElementById('adminPanel').classList.remove('hidden');
+        } else {
+            document.getElementById('adminPanel').classList.add('hidden');
+        }
     }
 
     // =======================================================
@@ -451,6 +574,9 @@
     function logout() {
         localStorage.removeItem('currentUser');
         currentUser = null;
+        // Выключаем музыку и радугу при выходе
+        if (musicPlaying) toggleMusic();
+        if (rainbowActive) toggleRainbow();
         showMain();
     }
 
@@ -501,40 +627,30 @@
     }
 
     // =======================================================
-    // ===== ENTER =====
+    // ===== АДМИН-ФУНКЦИИ =====
     // =======================================================
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            // Если видна форма входа
-            if (!document.getElementById('loginForm').classList.contains('hidden')) {
-                login();
-                return;
-            }
-            // Если видна форма регистрации
-            if (!document.getElementById('registerForm').classList.contains('hidden')) {
-                register();
-                return;
-            }
-            // Если виден чат
-            if (!document.getElementById('communitySection').classList.contains('hidden')) {
-                sendMessage();
-            }
+    function toggleMusic() {
+        const status = document.getElementById('musicStatus');
+
+        if (musicPlaying) {
+            audio.pause();
+            musicPlaying = false;
+            status.textContent = '🎵 Выкл';
+        } else {
+            audio.play().catch(() => {
+                // Автоплей может быть заблокирован
+            });
+            musicPlaying = true;
+            status.textContent = '🎵 Вкл';
         }
-    });
-
-    // =======================================================
-    // ===== СТАРТ =====
-    // =======================================================
-
-    const saved = localStorage.getItem('currentUser');
-    if (saved) {
-        currentUser = JSON.parse(saved);
-        showCommunity();
-    } else {
-        showMain();
     }
-</script>
 
-</body>
-</html>
+    function toggleRainbow() {
+        const body = document.body;
+        const container = document.querySelector('.container');
+        const status = document.getElementById('rainbowStatus');
+
+        if (rainbowActive) {
+            body.classList.remove('rainbow');
+            con
