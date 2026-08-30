@@ -5,6 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRASH DLC</title>
     <style>
+        /* ===== КОРНЕВЫЕ ПЕРЕМЕННЫЕ ===== */
+        :root {
+            --bg: #0f0a1a;
+            --bg-card: #1e1233;
+            --bg-profile: #120b1f;
+            --text: #fff;
+            --text-muted: #8b7aa8;
+            --border: #6a3f9e;
+            --shadow: rgba(106, 63, 158, 0.25);
+            --btn-bg: #6a3f9e;
+            --btn-hover: #8b5fcf;
+            --notice-bg: linear-gradient(135deg, #6a3f9e, #9b59b6);
+            --notice-text: #fff;
+            --notice-sub: #d4b8ff;
+            --admin-border: #f39c12;
+            --badge-admin: #f39c12;
+            --badge-beta: #2ecc71;
+            --badge-user: #3a2852;
+            --input-bg: #120b1f;
+            --input-border: #3a2852;
+        }
+
+        /* ===== СВЕТЛАЯ ТЕМА ===== */
+        body.light {
+            --bg: #f0ecf5;
+            --bg-card: #ffffff;
+            --bg-profile: #f5f0fa;
+            --text: #1a0a2e;
+            --text-muted: #5a4a72;
+            --border: #b78cf5;
+            --shadow: rgba(106, 63, 158, 0.15);
+            --btn-bg: #6a3f9e;
+            --btn-hover: #8b5fcf;
+            --notice-bg: linear-gradient(135deg, #8b5fcf, #b78cf5);
+            --notice-text: #fff;
+            --notice-sub: #e8d8ff;
+            --admin-border: #f39c12;
+            --badge-admin: #f39c12;
+            --badge-beta: #2ecc71;
+            --badge-user: #c0b0d0;
+            --input-bg: #fff;
+            --input-border: #d0c0e0;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,23 +57,25 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #0f0a1a;
-            color: #fff;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
-            background: #1e1233;
+            background: var(--bg-card);
             padding: 40px 35px;
             border-radius: 24px;
-            border: 1px solid #6a3f9e;
-            box-shadow: 0 0 60px rgba(106, 63, 158, 0.25);
+            border: 1px solid var(--border);
+            box-shadow: 0 0 60px var(--shadow);
             width: 100%;
             max-width: 550px;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         h1 {
@@ -41,21 +87,45 @@
 
         .sub {
             text-align: center;
-            color: #8b7aa8;
+            color: var(--text-muted);
             font-size: 14px;
             margin-bottom: 25px;
+            transition: color 0.3s ease;
+        }
+
+        /* ===== КНОПКА ТЕМЫ ===== */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px var(--shadow);
+            z-index: 1000;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
 
         /* ===== УВЕДОМЛЕНИЕ ===== */
         .notice {
-            background: linear-gradient(135deg, #6a3f9e, #9b59b6);
+            background: var(--notice-bg);
             border-radius: 16px;
             padding: 15px 20px;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 12px;
-            border: 1px solid #8b5fcf;
+            border: 1px solid var(--border);
             animation: pulse-notice 2s infinite;
         }
 
@@ -67,42 +137,39 @@
         .notice .icon {
             font-size: 28px;
         }
-
         .notice .text {
             flex: 1;
         }
-
         .notice .text strong {
             display: block;
             font-size: 15px;
-            color: #fff;
+            color: var(--notice-text);
         }
-
         .notice .text span {
             font-size: 13px;
-            color: #d4b8ff;
+            color: var(--notice-sub);
         }
-
         .notice .close-btn {
             background: none;
             border: none;
-            color: #d4b8ff;
+            color: var(--notice-sub);
             font-size: 20px;
             cursor: pointer;
             padding: 0 5px;
         }
         .notice .close-btn:hover {
-            color: #fff;
+            color: var(--notice-text);
         }
 
         /* ===== НОВОСТЬ ===== */
         .news-box {
-            background: #120b1f;
+            background: var(--bg-profile);
             border-radius: 16px;
             padding: 25px 20px;
-            border: 2px dashed #6a3f9e;
+            border: 2px dashed var(--border);
             margin-bottom: 20px;
             text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .news-box .icon {
@@ -118,9 +185,10 @@
         }
 
         .news-box p {
-            color: #8b7aa8;
+            color: var(--text-muted);
             font-size: 14px;
             line-height: 1.5;
+            transition: color 0.3s ease;
         }
 
         .news-box .date {
@@ -134,7 +202,7 @@
         .btn {
             display: inline-block;
             padding: 14px 30px;
-            background: #6a3f9e;
+            background: var(--btn-bg);
             color: #fff;
             border: none;
             border-radius: 12px;
@@ -149,7 +217,7 @@
         }
 
         .btn:hover {
-            background: #8b5fcf;
+            background: var(--btn-hover);
             transform: scale(1.02);
         }
 
@@ -176,10 +244,12 @@
 
         .btn-outline {
             background: transparent;
-            border: 2px solid #6a3f9e;
+            border: 2px solid var(--border);
+            color: var(--text);
         }
         .btn-outline:hover {
-            background: #6a3f9e;
+            background: var(--btn-bg);
+            color: #fff;
         }
 
         .btn-small {
@@ -221,11 +291,11 @@
             font-size: 14px;
             padding: 6px 18px;
             border-radius: 30px;
-            border: 1px solid #6a3f9e;
+            border: 1px solid var(--border);
             transition: 0.3s;
         }
         .links a:hover {
-            background: #6a3f9e;
+            background: var(--btn-bg);
             color: #fff;
         }
 
@@ -255,15 +325,16 @@
         }
 
         .modal {
-            background: #1e1233;
+            background: var(--bg-card);
             padding: 30px 25px;
             border-radius: 24px;
-            border: 1px solid #6a3f9e;
+            border: 1px solid var(--border);
             max-width: 420px;
             width: 100%;
             margin: 20px;
             max-height: 90vh;
             overflow-y: auto;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .modal h2 {
@@ -279,20 +350,22 @@
 
         .modal .form-group label {
             display: block;
-            color: #8b7aa8;
+            color: var(--text-muted);
             font-size: 13px;
             margin-bottom: 4px;
+            transition: color 0.3s ease;
         }
 
         .modal .form-group input {
             width: 100%;
             padding: 10px 14px;
             border-radius: 12px;
-            border: 1px solid #3a2852;
-            background: #120b1f;
-            color: #fff;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
+            color: var(--text);
             font-size: 14px;
             outline: none;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         .modal .form-group input:focus {
@@ -310,7 +383,7 @@
         .modal .switch {
             text-align: center;
             margin-top: 10px;
-            color: #8b7aa8;
+            color: var(--text-muted);
             font-size: 13px;
         }
         .modal .switch a {
@@ -347,12 +420,13 @@
         }
 
         .profile-card {
-            background: #120b1f;
+            background: var(--bg-profile);
             border-radius: 16px;
             padding: 20px;
-            border: 1px solid #6a3f9e;
+            border: 1px solid var(--border);
             margin-bottom: 15px;
             text-align: center;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .profile-card .avatar {
@@ -366,6 +440,7 @@
             font-size: 28px;
             font-weight: 700;
             margin: 0 auto 8px;
+            color: #fff;
         }
 
         .profile-card .name {
@@ -376,8 +451,9 @@
 
         .profile-card .role {
             font-size: 13px;
-            color: #8b7aa8;
+            color: var(--text-muted);
             margin-top: 4px;
+            transition: color 0.3s ease;
         }
 
         .profile-card .status {
@@ -397,31 +473,30 @@
         }
 
         .badge-admin {
-            background: #f39c12;
+            background: var(--badge-admin);
             color: #0f0a1a;
         }
-
         .badge-beta {
-            background: #2ecc71;
+            background: var(--badge-beta);
             color: #0f0a1a;
         }
-
         .badge-user {
-            background: #3a2852;
-            color: #8b7aa8;
+            background: var(--badge-user);
+            color: var(--text);
         }
 
         /* ===== АДМИН-ПАНЕЛЬ ===== */
         .admin-panel {
-            background: #120b1f;
+            background: var(--bg-profile);
             border-radius: 16px;
             padding: 18px;
-            border: 2px solid #f39c12;
+            border: 2px solid var(--admin-border);
             margin-bottom: 15px;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
 
         .admin-panel h3 {
-            color: #f39c12;
+            color: var(--admin-border);
             font-size: 16px;
             margin-bottom: 12px;
             text-align: center;
@@ -432,11 +507,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 6px 10px;
-            background: #0f0a1a;
+            background: var(--bg);
             border-radius: 8px;
             margin-bottom: 4px;
             flex-wrap: wrap;
             gap: 4px;
+            transition: background 0.3s ease;
         }
 
         .admin-panel .user-row .name {
@@ -459,25 +535,21 @@
             border-radius: 8px;
         }
 
-        .admin-panel .user-row .role-tag {
-            font-size: 10px;
-            padding: 2px 10px;
-            border-radius: 40px;
-        }
-
         .pay-info {
-            background: #120b1f;
+            background: var(--bg-profile);
             border-radius: 12px;
             padding: 12px 15px;
             margin: 10px 0;
             border-left: 3px solid #f39c12;
             text-align: left;
+            transition: background 0.3s ease;
         }
 
         .pay-info p {
-            color: #8b7aa8;
+            color: var(--text-muted);
             font-size: 12px;
             line-height: 1.5;
+            transition: color 0.3s ease;
         }
 
         .pay-info strong {
@@ -500,10 +572,20 @@
             .admin-panel .user-row .actions {
                 justify-content: center;
             }
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
+
+<!-- ===== КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ (5) ===== -->
+<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
 
 <div class="container">
 
@@ -551,7 +633,6 @@
         <h1>🚀 CRASH DLC</h1>
         <div class="sub">Твой профиль</div>
 
-        <!-- ===== КАРТОЧКА ПРОФИЛЯ ===== -->
         <div class="profile-card">
             <div class="avatar" id="profileAvatar">L</div>
             <div class="name" id="profileName">Логин</div>
@@ -565,12 +646,10 @@
             <div id="userList"></div>
         </div>
 
-        <!-- ===== КНОПКА ПОКУПКИ БЕТЫ ===== -->
         <a href="https://www.donationalerts.com/r/crashdlc" target="_blank" class="btn btn-gold">
             🛒 Купить Бета-тест 1.21.11 (300 ₽)
         </a>
 
-        <!-- ===== ИНСТРУКЦИЯ ===== -->
         <div class="pay-info">
             <p>📌 <strong>Как получить доступ:</strong></p>
             <p>1️⃣ Оплати 300 ₽ по кнопке выше</p>
@@ -629,97 +708,4 @@
                 <label>🔁 Повтори пароль</label>
                 <input type="password" id="modalRegPass2" placeholder="Повтори пароль">
             </div>
-            <button class="btn btn-green" onclick="modalRegister()">Зарегистрироваться</button>
-            <div class="switch">Уже есть аккаунт? <a onclick="modalShowLogin()">Войти</a></div>
-        </div>
-
-        <div id="modalMsg"></div>
-        <button class="btn btn-close" onclick="closeModal()">✖ Закрыть</button>
-    </div>
-</div>
-
-<script>
-    // =======================================================
-    // ===== ДАННЫЕ =====
-    // =======================================================
-
-    const ADMINS = ['lxneo', 'fridiz'];
-    let BETA_USERS = ['lxneo', 'fridiz'];
-
-    function getUsers() {
-        return JSON.parse(localStorage.getItem('users') || '[]');
-    }
-
-    function saveUsers(users) {
-        localStorage.setItem('users', JSON.stringify(users));
-    }
-
-    let currentUser = null;
-
-    // =======================================================
-    // ===== УВЕДОМЛЕНИЕ =====
-    // =======================================================
-
-    function closeNotice() {
-        document.getElementById('versionNotice').style.display = 'none';
-        localStorage.setItem('noticeClosed', 'true');
-    }
-
-    // =======================================================
-    // ===== МОДАЛКА =====
-    // =======================================================
-
-    function openModal() {
-        document.getElementById('loginModal').classList.add('active');
-        document.getElementById('modalMsg').textContent = '';
-        modalShowLogin();
-    }
-
-    function closeModal() {
-        document.getElementById('loginModal').classList.remove('active');
-    }
-
-    function modalShowLogin() {
-        document.getElementById('modalLogin').classList.remove('hidden');
-        document.getElementById('modalRegister').classList.add('hidden');
-        document.getElementById('modalTitle').textContent = '🔐 Вход';
-        document.getElementById('modalMsg').textContent = '';
-    }
-
-    function modalShowRegister() {
-        document.getElementById('modalLogin').classList.add('hidden');
-        document.getElementById('modalRegister').classList.remove('hidden');
-        document.getElementById('modalTitle').textContent = '📝 Регистрация';
-        document.getElementById('modalMsg').textContent = '';
-    }
-
-    // =======================================================
-    // ===== РЕГИСТРАЦИЯ =====
-    // =======================================================
-
-    function modalRegister() {
-        const name = document.getElementById('modalRegName').value.trim();
-        const email = document.getElementById('modalRegEmail').value.trim();
-        const pass = document.getElementById('modalRegPass').value;
-        const pass2 = document.getElementById('modalRegPass2').value;
-        const msg = document.getElementById('modalMsg');
-
-        if (!name || !email || !pass || !pass2) {
-            msg.textContent = '❌ Заполни все поля!';
-            msg.style.color = '#e74c3c';
-            return;
-        }
-        if (pass.length < 4) {
-            msg.textContent = '❌ Пароль минимум 4 символа!';
-            msg.style.color = '#e74c3c';
-            return;
-        }
-        if (pass !== pass2) {
-            msg.textContent = '❌ Пароли не совпадают!';
-            msg.style.color = '#e74c3c';
-            return;
-        }
-
-        const users = getUsers();
-        if (users.find(u => u.name === name)) {
-            m
+            <button class="btn btn-green" onclick
