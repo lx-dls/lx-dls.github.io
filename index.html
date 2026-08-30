@@ -29,7 +29,7 @@
             border: 1px solid #6a3f9e;
             box-shadow: 0 0 60px rgba(106, 63, 158, 0.25);
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             text-align: center;
         }
 
@@ -45,19 +45,54 @@
             margin-bottom: 25px;
         }
 
-        .btn {
+        /* ===== НОВОСТЬ ===== */
+        .news-box {
+            background: #120b1f;
+            border-radius: 16px;
+            padding: 30px 25px;
+            border: 2px dashed #6a3f9e;
+            margin-bottom: 20px;
+        }
+
+        .news-box .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
             display: block;
-            width: 100%;
-            padding: 16px;
+        }
+
+        .news-box h2 {
+            color: #b78cf5;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .news-box p {
+            color: #8b7aa8;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .news-box .date {
+            color: #5a4a72;
+            font-size: 12px;
+            margin-top: 12px;
+            display: block;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
             background: #6a3f9e;
             color: #fff;
             border: none;
             border-radius: 12px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
             text-decoration: none;
+            width: 100%;
             margin-bottom: 10px;
         }
 
@@ -66,44 +101,43 @@
             transform: scale(1.02);
         }
 
-        .btn-locked {
-            background: #3a2852;
-            color: #6a5a7a;
-            cursor: not-allowed;
-            opacity: 0.6;
-            pointer-events: none;
+        .btn-gold {
+            background: #f39c12;
         }
-        .btn-locked::after {
-            content: " 🔒";
-            color: #6a5a7a;
+        .btn-gold:hover {
+            background: #e67e22;
         }
 
-        .news-box {
-            background: #120b1f;
-            border-radius: 16px;
-            padding: 25px 20px;
-            border: 2px dashed #6a3f9e;
-            margin-bottom: 20px;
+        .btn-green {
+            background: #2ecc71;
+        }
+        .btn-green:hover {
+            background: #27ae60;
         }
 
-        .news-box .icon {
-            font-size: 36px;
-            display: block;
-            margin-bottom: 8px;
+        .btn-red {
+            background: #e74c3c;
+        }
+        .btn-red:hover {
+            background: #c0392b;
         }
 
-        .news-box h2 {
-            color: #b78cf5;
-            font-size: 20px;
-            margin-bottom: 6px;
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #6a3f9e;
+        }
+        .btn-outline:hover {
+            background: #6a3f9e;
         }
 
-        .news-box p {
-            color: #8b7aa8;
-            font-size: 14px;
-            line-height: 1.5;
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
         }
 
+        /* ===== СТАТУС ===== */
         .status {
             color: #5a4a72;
             font-size: 13px;
@@ -113,6 +147,7 @@
             color: #2ecc71;
         }
 
+        /* ===== ССЫЛКИ ===== */
         .links {
             margin-top: 15px;
             display: flex;
@@ -139,36 +174,501 @@
             font-size: 13px;
             margin-top: 20px;
         }
+
+        /* ===== МОДАЛКА ВХОДА ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: #1e1233;
+            padding: 35px 30px;
+            border-radius: 24px;
+            border: 1px solid #6a3f9e;
+            max-width: 400px;
+            width: 100%;
+            margin: 20px;
+        }
+
+        .modal h2 {
+            color: #b78cf5;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .modal .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal .form-group label {
+            display: block;
+            color: #8b7aa8;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .modal .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid #3a2852;
+            background: #120b1f;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .modal .form-group input:focus {
+            border-color: #8b5fcf;
+        }
+
+        .modal .btn-close {
+            background: #e74c3c;
+            margin-top: 10px;
+        }
+        .modal .btn-close:hover {
+            background: #c0392b;
+        }
+
+        .modal .switch {
+            text-align: center;
+            margin-top: 12px;
+            color: #8b7aa8;
+            font-size: 14px;
+        }
+        .modal .switch a {
+            color: #b78cf5;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .modal #modalMsg {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            min-height: 22px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .profile-section {
+            display: none;
+        }
+        .profile-section.active {
+            display: block;
+        }
+
+        .main-section {
+            display: block;
+        }
+        .main-section.hidden {
+            display: none;
+        }
+
+        /* ===== БЕЙДЖИ ===== */
+        .badge {
+            display: inline-block;
+            padding: 3px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+
+        .badge-admin {
+            background: #f39c12;
+            color: #0f0a1a;
+        }
+
+        .badge-user {
+            background: #3a2852;
+            color: #8b7aa8;
+        }
+
+        .badge-beta {
+            background: #2ecc71;
+            color: #0f0a1a;
+        }
+
+        /* ===== ИНСТРУКЦИЯ ПОСЛЕ ОПЛАТЫ ===== */
+        .pay-info {
+            background: #120b1f;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 3px solid #f39c12;
+            text-align: left;
+        }
+
+        .pay-info p {
+            color: #8b7aa8;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .pay-info strong {
+            color: #b78cf5;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🚀 CRASH DLC</h1>
-    <div class="sub">Установи клиент и участвуй в бета-тесте</div>
 
-    <div class="news-box">
-        <span class="icon">⚙️</span>
-        <h2>В разработке</h2>
-        <p>
-            Мы работаем над новой версией CRASH DLC.<br>
-            Добавляем уникальные функции и улучшаем анти-бан.
-        </p>
+    <!-- ===== ГЛАВНАЯ ===== -->
+    <div id="mainSection">
+        <h1>🚀 CRASH DLC</h1>
+        <div class="sub">Установи клиент и участвуй в бета-тесте</div>
+
+        <div class="news-box">
+            <span class="icon">⚙️</span>
+            <h2>В разработке</h2>
+            <p>
+                Мы работаем над новой версией CRASH DLC.<br>
+                Добавляем уникальные функции и улучшаем анти-бан.
+            </p>
+            <span class="date">📅 30 августа 2026</span>
+        </div>
+
+        <button class="btn" onclick="openModal()">🔑 Войти</button>
+
+        <div class="status">
+            <span class="online">●</span> Сервер: <span class="online">онлайн</span>
+        </div>
+
+        <div class="links">
+            <a href="https://discord.gg/DanFgwuyd" target="_blank">💬 Discord</a>
+            <a href="https://t.me/crashDLC" target="_blank">📲 Telegram</a>
+        </div>
+
+        <div class="footer">© 2026 CRASH DLC</div>
     </div>
 
-    <button class="btn btn-locked">📥 Установить</button>
+    <!-- ===== ПРОФИЛЬ (ПОСЛЕ ВХОДА) ===== -->
+    <div id="profileSection" class="profile-section">
+        <h1>🚀 CRASH DLC</h1>
+        <div class="sub">Твой профиль</div>
 
-    <div class="status">
-        <span class="online">●</span> Сервер: <span class="online">онлайн</span>
+        <div class="profile" style="background:#120b1f; border-radius:16px; padding:25px; border:1px solid #6a3f9e; margin-bottom:20px;">
+            <div style="width:70px; height:70px; border-radius:50%; background:#6a3f9e; display:flex; align-items:center; justify-content:center; font-size:32px; font-weight:700; margin:0 auto 10px;" id="profileAvatar">L</div>
+            <div style="font-size:22px; font-weight:700; color:#b78cf5;" id="profileName">Логин</div>
+            <div style="font-size:14px; color:#8b7aa8; margin-top:4px;" id="profileRole">🎮 Игрок</div>
+            <div style="color:#2ecc71; font-size:13px; margin-top:6px;">● В сети</div>
+        </div>
+
+        <!-- ===== КНОПКА ПОКУПКИ БЕТЫ ===== -->
+        <a href="https://www.donationalerts.com/r/crashdlc" target="_blank" class="btn btn-gold">
+            🛒 Купить Бета-тест 1.21.11 (300 ₽)
+        </a>
+
+        <!-- ===== ИНСТРУКЦИЯ ===== -->
+        <div class="pay-info">
+            <p>📌 <strong>Как получить доступ:</strong></p>
+            <p>1️⃣ Оплати 300 ₽ по кнопке выше</p>
+            <p>2️⃣ Напиши в <strong>Telegram</strong> <a href="https://t.me/crashDLC" target="_blank" style="color:#b78cf5;">@crashDLC</a> или <strong>Discord</strong> с чеком</p>
+            <p>3️⃣ Тебе выдадут статус <strong>«Бета-клиент»</strong> навсегда!</p>
+        </div>
+
+        <button class="btn btn-red" onclick="logout()">🚪 Выйти</button>
+
+        <div class="status" style="margin-top:15px;">
+            <span class="online">●</span> Сервер: <span class="online">онлайн</span>
+        </div>
+
+        <div class="links">
+            <a href="https://discord.gg/DanFgwuyd" target="_blank">💬 Discord</a>
+            <a href="https://t.me/crashDLC" target="_blank">📲 Telegram</a>
+        </div>
+
+        <div class="footer">© 2026 CRASH DLC</div>
     </div>
 
-    <div class="links">
-        <a href="https://discord.gg/DanFgwuyd" target="_blank">💬 Discord</a>
-        <a href="https://t.me/crashDLC" target="_blank">📲 Telegram</a>
-    </div>
-
-    <div class="footer">© 2026 CRASH DLC</div>
 </div>
+
+<!-- ===== МОДАЛКА ВХОДА ===== -->
+<div class="modal-overlay" id="loginModal">
+    <div class="modal">
+        <h2 id="modalTitle">🔐 Вход</h2>
+
+        <div id="modalLogin">
+            <div class="form-group">
+                <label>👤 Логин</label>
+                <input type="text" id="modalLoginName" placeholder="Введите логин">
+            </div>
+            <div class="form-group">
+                <label>🔑 Пароль</label>
+                <input type="password" id="modalLoginPass" placeholder="Введите пароль">
+            </div>
+            <button class="btn" onclick="modalLogin()">Войти</button>
+            <div class="switch">Нет аккаунта? <a onclick="modalShowRegister()">Зарегистрируйся</a></div>
+        </div>
+
+        <div id="modalRegister" class="hidden">
+            <div class="form-group">
+                <label>👤 Логин</label>
+                <input type="text" id="modalRegName" placeholder="Придумай логин">
+            </div>
+            <div class="form-group">
+                <label>📧 Почта</label>
+                <input type="email" id="modalRegEmail" placeholder="Введи почту">
+            </div>
+            <div class="form-group">
+                <label>🔑 Пароль</label>
+                <input type="password" id="modalRegPass" placeholder="Придумай пароль">
+            </div>
+            <div class="form-group">
+                <label>🔁 Повтори пароль</label>
+                <input type="password" id="modalRegPass2" placeholder="Повтори пароль">
+            </div>
+            <button class="btn btn-green" onclick="modalRegister()">Зарегистрироваться</button>
+            <div class="switch">Уже есть аккаунт? <a onclick="modalShowLogin()">Войти</a></div>
+        </div>
+
+        <div id="modalMsg"></div>
+        <button class="btn btn-close" onclick="closeModal()">✖ Закрыть</button>
+    </div>
+</div>
+
+<script>
+    // =======================================================
+    // ===== АДМИНЫ =====
+    // =======================================================
+
+    const ADMINS = ['lxneo', 'fridiz'];
+    const BETA_USERS = ['lxneo', 'fridiz']; // Сюда добавляешь тех, кто купил бету
+
+    // =======================================================
+    // ===== МОДАЛКА =====
+    // =======================================================
+
+    function openModal() {
+        document.getElementById('loginModal').classList.add('active');
+        document.getElementById('modalMsg').textContent = '';
+        modalShowLogin();
+    }
+
+    function closeModal() {
+        document.getElementById('loginModal').classList.remove('active');
+    }
+
+    function modalShowLogin() {
+        document.getElementById('modalLogin').classList.remove('hidden');
+        document.getElementById('modalRegister').classList.add('hidden');
+        document.getElementById('modalTitle').textContent = '🔐 Вход';
+        document.getElementById('modalMsg').textContent = '';
+    }
+
+    function modalShowRegister() {
+        document.getElementById('modalLogin').classList.add('hidden');
+        document.getElementById('modalRegister').classList.remove('hidden');
+        document.getElementById('modalTitle').textContent = '📝 Регистрация';
+        document.getElementById('modalMsg').textContent = '';
+    }
+
+    // =======================================================
+    // ===== ДАННЫЕ =====
+    // =======================================================
+
+    function getUsers() {
+        return JSON.parse(localStorage.getItem('users') || '[]');
+    }
+
+    function saveUsers(users) {
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    let currentUser = null;
+
+    // =======================================================
+    // ===== РЕГИСТРАЦИЯ =====
+    // =======================================================
+
+    function modalRegister() {
+        const name = document.getElementById('modalRegName').value.trim();
+        const email = document.getElementById('modalRegEmail').value.trim();
+        const pass = document.getElementById('modalRegPass').value;
+        const pass2 = document.getElementById('modalRegPass2').value;
+        const msg = document.getElementById('modalMsg');
+
+        if (!name || !email || !pass || !pass2) {
+            msg.textContent = '❌ Заполни все поля!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+        if (pass.length < 4) {
+            msg.textContent = '❌ Пароль минимум 4 символа!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+        if (pass !== pass2) {
+            msg.textContent = '❌ Пароли не совпадают!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+
+        const users = getUsers();
+        if (users.find(u => u.name === name)) {
+            msg.textContent = '❌ Такой логин уже занят!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+
+        users.push({
+            name: name,
+            email: email,
+            password: pass,
+            date: new Date().toLocaleDateString('ru-RU')
+        });
+        saveUsers(users);
+
+        msg.textContent = '✅ Регистрация успешна! Теперь войди.';
+        msg.style.color = '#2ecc71';
+
+        setTimeout(() => {
+            document.getElementById('modalLoginName').value = name;
+            modalShowLogin();
+            msg.textContent = '';
+        }, 1500);
+    }
+
+    // =======================================================
+    // ===== ВХОД =====
+    // =======================================================
+
+    function modalLogin() {
+        const name = document.getElementById('modalLoginName').value.trim();
+        const pass = document.getElementById('modalLoginPass').value.trim();
+        const msg = document.getElementById('modalMsg');
+
+        if (!name || !pass) {
+            msg.textContent = '❌ Заполни все поля!';
+            msg.style.color = '#e74c3c';
+            return;
+        }
+
+        const users = getUsers();
+        const user = users.find(u => u.name === name && u.password === pass);
+
+        if (user) {
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            msg.textContent = '✅ Добро пожаловать, ' + name + '!';
+            msg.style.color = '#2ecc71';
+            setTimeout(() => {
+                closeModal();
+                showProfile();
+            }, 800);
+        } else {
+            msg.textContent = '❌ Неверный логин или пароль!';
+            msg.style.color = '#e74c3c';
+        }
+    }
+
+    // =======================================================
+    // ===== ПРОФИЛЬ =====
+    // =======================================================
+
+    function showProfile() {
+        if (!currentUser) return;
+
+        document.getElementById('mainSection').classList.add('hidden');
+        document.getElementById('profileSection').classList.add('active');
+
+        const avatar = document.getElementById('profileAvatar');
+        const nameEl = document.getElementById('profileName');
+        const roleEl = document.getElementById('profileRole');
+
+        avatar.textContent = currentUser.name.charAt(0).toUpperCase();
+        nameEl.textContent = currentUser.name;
+
+        const isAdmin = ADMINS.includes(currentUser.name);
+        const isBeta = BETA_USERS.includes(currentUser.name);
+
+        let roleText = '';
+        let badge = '';
+
+        if (isAdmin) {
+            roleText = '👑 Администратор';
+            badge = '<span class="badge badge-admin">ADMIN</span>';
+        } else if (isBeta) {
+            roleText = '🧪 Бета-клиент';
+            badge = '<span class="badge badge-beta">BETA</span>';
+        } else {
+            roleText = '🎮 Игрок';
+            badge = '<span class="badge badge-user">USER</span>';
+        }
+
+        roleEl.innerHTML = roleText + ' ' + badge;
+    }
+
+    // =======================================================
+    // ===== ВЫХОД =====
+    // =======================================================
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        currentUser = null;
+        document.getElementById('mainSection').classList.remove('hidden');
+        document.getElementById('profileSection').classList.remove('active');
+    }
+
+    // =======================================================
+    // ===== ENTER =====
+    // =======================================================
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            if (!document.getElementById('loginModal').classList.contains('active')) return;
+
+            if (!document.getElementById('modalLogin').classList.contains('hidden')) {
+                modalLogin();
+            } else {
+                modalRegister();
+            }
+        }
+
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+
+    // =======================================================
+    // ===== КЛИК ВНЕ МОДАЛКИ =====
+    // =======================================================
+
+    document.getElementById('loginModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // =======================================================
+    // ===== СТАРТ =====
+    // =======================================================
+
+    const saved = localStorage.getItem('currentUser');
+    if (saved) {
+        currentUser = JSON.parse(saved);
+        showProfile();
+    }
+</script>
 
 </body>
 </html>
