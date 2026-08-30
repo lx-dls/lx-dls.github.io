@@ -79,6 +79,50 @@
             display: block;
         }
 
+        /* ===== ПРОФИЛЬ ===== */
+        .profile {
+            background: #120b1f;
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid #6a3f9e;
+            margin-bottom: 20px;
+        }
+
+        .profile .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #6a3f9e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 auto 10px;
+        }
+
+        .profile .name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #b78cf5;
+        }
+
+        .profile .role {
+            font-size: 14px;
+            color: #8b7aa8;
+            margin-top: 4px;
+        }
+
+        .profile .role.admin {
+            color: #f39c12;
+        }
+
+        .profile .status {
+            color: #2ecc71;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
         /* ===== КНОПКИ ===== */
         .btn {
             display: inline-block;
@@ -113,6 +157,13 @@
         }
         .btn-gold:hover {
             background: #e67e22;
+        }
+
+        .btn-red {
+            background: #e74c3c;
+        }
+        .btn-red:hover {
+            background: #c0392b;
         }
 
         .btn-locked {
@@ -264,44 +315,105 @@
         .hidden {
             display: none !important;
         }
+
+        .profile-section {
+            display: none;
+        }
+        .profile-section.active {
+            display: block;
+        }
+
+        .main-section {
+            display: block;
+        }
+        .main-section.hidden {
+            display: none;
+        }
+
+        /* ===== АДМИН-БЕЙДЖ ===== */
+        .admin-badge {
+            display: inline-block;
+            background: #f39c12;
+            color: #0f0a1a;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+
+        .user-badge {
+            display: inline-block;
+            background: #3a2852;
+            color: #8b7aa8;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-left: 6px;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
 
-    <h1>🚀 CRASH DLC</h1>
-    <div class="sub">Установи клиент и участвуй в бета-тесте</div>
+    <!-- ===== ГЛАВНАЯ ===== -->
+    <div id="mainSection">
+        <h1>🚀 CRASH DLC</h1>
+        <div class="sub">Установи клиент и участвуй в бета-тесте</div>
 
-    <!-- ===== НОВОСТЬ ===== -->
-    <div class="news-box">
-        <span class="icon">⚙️</span>
-        <h2>В разработке</h2>
-        <p>
-            Мы работаем над новой версией CRASH DLC.<br>
-            Добавляем уникальные функции и улучшаем анти-бан.
-        </p>
-        <span class="date">📅 30 августа 2026</span>
-    </div>
+        <div class="news-box">
+            <span class="icon">⚙️</span>
+            <h2>В разработке</h2>
+            <p>
+                Мы работаем над новой версией CRASH DLC.<br>
+                Добавляем уникальные функции и улучшаем анти-бан.
+            </p>
+            <span class="date">📅 30 августа 2026</span>
+        </div>
 
-    <!-- ===== КНОПКИ ===== -->
-    <div class="btn-group">
         <button class="btn" onclick="openModal()">🔑 Войти</button>
-        <button class="btn btn-locked">🛒 Купить бету 1.21.11</button>
+
+        <div class="status">
+            <span class="online">●</span> Сервер: <span class="online">онлайн</span>
+        </div>
+
+        <div class="links">
+            <a href="https://discord.gg/DanFgwuyd" target="_blank">💬 Discord</a>
+            <a href="https://t.me/crashDLC" target="_blank">📲 Telegram</a>
+        </div>
+
+        <div class="footer">© 2026 CRASH DLC</div>
     </div>
 
-    <!-- ===== СТАТУС ===== -->
-    <div class="status">
-        <span class="online">●</span> Сервер: <span class="online">онлайн</span>
-    </div>
+    <!-- ===== ПРОФИЛЬ (ПОСЛЕ ВХОДА) ===== -->
+    <div id="profileSection" class="profile-section">
+        <h1>🚀 CRASH DLC</h1>
+        <div class="sub">Твой профиль</div>
 
-    <!-- ===== ССЫЛКИ ===== -->
-    <div class="links">
-        <a href="https://discord.gg/DanFgwuyd" target="_blank">💬 Discord</a>
-        <a href="https://t.me/crashDLC" target="_blank">📲 Telegram</a>
-    </div>
+        <div class="profile">
+            <div class="avatar" id="profileAvatar">L</div>
+            <div class="name" id="profileName">Логин</div>
+            <div class="role" id="profileRole">🎮 Игрок</div>
+            <div class="status">● В сети</div>
+        </div>
 
-    <div class="footer">© 2026 CRASH DLC</div>
+        <button class="btn btn-locked">🛒 Купить бета-тест 1.21.11</button>
+
+        <button class="btn btn-red" onclick="logout()">🚪 Выйти</button>
+
+        <div class="status" style="margin-top:15px;">
+            <span class="online">●</span> Сервер: <span class="online">онлайн</span>
+        </div>
+
+        <div class="links">
+            <a href="https://discord.gg/DanFgwuyd" target="_blank">💬 Discord</a>
+            <a href="https://t.me/crashDLC" target="_blank">📲 Telegram</a>
+        </div>
+
+        <div class="footer">© 2026 CRASH DLC</div>
+    </div>
 
 </div>
 
@@ -351,6 +463,12 @@
 
 <script>
     // =======================================================
+    // ===== АДМИНЫ =====
+    // =======================================================
+
+    const ADMINS = ['lxneo', 'fridiz'];
+
+    // =======================================================
     // ===== МОДАЛКА =====
     // =======================================================
 
@@ -389,6 +507,8 @@
     function saveUsers(users) {
         localStorage.setItem('users', JSON.stringify(users));
     }
+
+    let currentUser = null;
 
     // =======================================================
     // ===== РЕГИСТРАЦИЯ =====
@@ -461,17 +581,56 @@
         const user = users.find(u => u.name === name && u.password === pass);
 
         if (user) {
+            currentUser = user;
             localStorage.setItem('currentUser', JSON.stringify(user));
             msg.textContent = '✅ Добро пожаловать, ' + name + '!';
             msg.style.color = '#2ecc71';
             setTimeout(() => {
                 closeModal();
-                // Можно что-то сделать после входа
-            }, 1000);
+                showProfile();
+            }, 800);
         } else {
             msg.textContent = '❌ Неверный логин или пароль!';
             msg.style.color = '#e74c3c';
         }
+    }
+
+    // =======================================================
+    // ===== ПРОФИЛЬ =====
+    // =======================================================
+
+    function showProfile() {
+        if (!currentUser) return;
+
+        document.getElementById('mainSection').classList.add('hidden');
+        document.getElementById('profileSection').classList.add('active');
+
+        const avatar = document.getElementById('profileAvatar');
+        const nameEl = document.getElementById('profileName');
+        const roleEl = document.getElementById('profileRole');
+
+        avatar.textContent = currentUser.name.charAt(0).toUpperCase();
+        nameEl.textContent = currentUser.name;
+
+        const isAdmin = ADMINS.includes(currentUser.name);
+        if (isAdmin) {
+            roleEl.innerHTML = '👑 Администратор <span class="admin-badge">ADMIN</span>';
+            roleEl.className = 'role admin';
+        } else {
+            roleEl.innerHTML = '🎮 Игрок <span class="user-badge">USER</span>';
+            roleEl.className = 'role';
+        }
+    }
+
+    // =======================================================
+    // ===== ВЫХОД =====
+    // =======================================================
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        currentUser = null;
+        document.getElementById('mainSection').classList.remove('hidden');
+        document.getElementById('profileSection').classList.remove('active');
     }
 
     // =======================================================
@@ -503,6 +662,16 @@
             closeModal();
         }
     });
+
+    // =======================================================
+    // ===== СТАРТ =====
+    // =======================================================
+
+    const saved = localStorage.getItem('currentUser');
+    if (saved) {
+        currentUser = JSON.parse(saved);
+        showProfile();
+    }
 </script>
 
 </body>
