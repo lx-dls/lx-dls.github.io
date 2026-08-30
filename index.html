@@ -79,50 +79,6 @@
             display: block;
         }
 
-        /* ===== ПРОФИЛЬ ===== */
-        .profile {
-            background: #120b1f;
-            border-radius: 16px;
-            padding: 25px;
-            border: 1px solid #6a3f9e;
-            margin-bottom: 20px;
-        }
-
-        .profile .avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: #6a3f9e;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: 700;
-            margin: 0 auto 10px;
-        }
-
-        .profile .name {
-            font-size: 22px;
-            font-weight: 700;
-            color: #b78cf5;
-        }
-
-        .profile .role {
-            font-size: 14px;
-            color: #8b7aa8;
-            margin-top: 4px;
-        }
-
-        .profile .role.admin {
-            color: #f39c12;
-        }
-
-        .profile .status {
-            color: #2ecc71;
-            font-size: 13px;
-            margin-top: 6px;
-        }
-
         /* ===== КНОПКИ ===== */
         .btn {
             display: inline-block;
@@ -145,18 +101,18 @@
             transform: scale(1.02);
         }
 
-        .btn-green {
-            background: #2ecc71;
-        }
-        .btn-green:hover {
-            background: #27ae60;
-        }
-
         .btn-gold {
             background: #f39c12;
         }
         .btn-gold:hover {
             background: #e67e22;
+        }
+
+        .btn-green {
+            background: #2ecc71;
+        }
+        .btn-green:hover {
+            background: #27ae60;
         }
 
         .btn-red {
@@ -166,16 +122,12 @@
             background: #c0392b;
         }
 
-        .btn-locked {
-            background: #3a2852;
-            color: #6a5a7a;
-            cursor: not-allowed;
-            opacity: 0.6;
-            pointer-events: none;
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #6a3f9e;
         }
-        .btn-locked::after {
-            content: " 🔒";
-            color: #6a5a7a;
+        .btn-outline:hover {
+            background: #6a3f9e;
         }
 
         .btn-group {
@@ -330,27 +282,49 @@
             display: none;
         }
 
-        /* ===== АДМИН-БЕЙДЖ ===== */
-        .admin-badge {
+        /* ===== БЕЙДЖИ ===== */
+        .badge {
             display: inline-block;
-            background: #f39c12;
-            color: #0f0a1a;
-            padding: 2px 14px;
+            padding: 3px 14px;
             border-radius: 40px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
             margin-left: 6px;
         }
 
-        .user-badge {
-            display: inline-block;
+        .badge-admin {
+            background: #f39c12;
+            color: #0f0a1a;
+        }
+
+        .badge-user {
             background: #3a2852;
             color: #8b7aa8;
-            padding: 2px 14px;
-            border-radius: 40px;
-            font-size: 11px;
-            font-weight: 700;
-            margin-left: 6px;
+        }
+
+        .badge-beta {
+            background: #2ecc71;
+            color: #0f0a1a;
+        }
+
+        /* ===== ИНСТРУКЦИЯ ПОСЛЕ ОПЛАТЫ ===== */
+        .pay-info {
+            background: #120b1f;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 3px solid #f39c12;
+            text-align: left;
+        }
+
+        .pay-info p {
+            color: #8b7aa8;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .pay-info strong {
+            color: #b78cf5;
         }
     </style>
 </head>
@@ -392,14 +366,25 @@
         <h1>🚀 CRASH DLC</h1>
         <div class="sub">Твой профиль</div>
 
-        <div class="profile">
-            <div class="avatar" id="profileAvatar">L</div>
-            <div class="name" id="profileName">Логин</div>
-            <div class="role" id="profileRole">🎮 Игрок</div>
-            <div class="status">● В сети</div>
+        <div class="profile" style="background:#120b1f; border-radius:16px; padding:25px; border:1px solid #6a3f9e; margin-bottom:20px;">
+            <div style="width:70px; height:70px; border-radius:50%; background:#6a3f9e; display:flex; align-items:center; justify-content:center; font-size:32px; font-weight:700; margin:0 auto 10px;" id="profileAvatar">L</div>
+            <div style="font-size:22px; font-weight:700; color:#b78cf5;" id="profileName">Логин</div>
+            <div style="font-size:14px; color:#8b7aa8; margin-top:4px;" id="profileRole">🎮 Игрок</div>
+            <div style="color:#2ecc71; font-size:13px; margin-top:6px;">● В сети</div>
         </div>
 
-        <button class="btn btn-locked">🛒 Купить бета-тест 1.21.11</button>
+        <!-- ===== КНОПКА ПОКУПКИ БЕТЫ ===== -->
+        <a href="https://www.donationalerts.com/r/crashdlc" target="_blank" class="btn btn-gold">
+            🛒 Купить Бета-тест 1.21.11 (300 ₽)
+        </a>
+
+        <!-- ===== ИНСТРУКЦИЯ ===== -->
+        <div class="pay-info">
+            <p>📌 <strong>Как получить доступ:</strong></p>
+            <p>1️⃣ Оплати 300 ₽ по кнопке выше</p>
+            <p>2️⃣ Напиши в <strong>Telegram</strong> <a href="https://t.me/crashDLC" target="_blank" style="color:#b78cf5;">@crashDLC</a> или <strong>Discord</strong> с чеком</p>
+            <p>3️⃣ Тебе выдадут статус <strong>«Бета-клиент»</strong> навсегда!</p>
+        </div>
 
         <button class="btn btn-red" onclick="logout()">🚪 Выйти</button>
 
@@ -467,6 +452,7 @@
     // =======================================================
 
     const ADMINS = ['lxneo', 'fridiz'];
+    const BETA_USERS = ['lxneo', 'fridiz']; // Сюда добавляешь тех, кто купил бету
 
     // =======================================================
     // ===== МОДАЛКА =====
@@ -613,13 +599,23 @@
         nameEl.textContent = currentUser.name;
 
         const isAdmin = ADMINS.includes(currentUser.name);
+        const isBeta = BETA_USERS.includes(currentUser.name);
+
+        let roleText = '';
+        let badge = '';
+
         if (isAdmin) {
-            roleEl.innerHTML = '👑 Администратор <span class="admin-badge">ADMIN</span>';
-            roleEl.className = 'role admin';
+            roleText = '👑 Администратор';
+            badge = '<span class="badge badge-admin">ADMIN</span>';
+        } else if (isBeta) {
+            roleText = '🧪 Бета-клиент';
+            badge = '<span class="badge badge-beta">BETA</span>';
         } else {
-            roleEl.innerHTML = '🎮 Игрок <span class="user-badge">USER</span>';
-            roleEl.className = 'role';
+            roleText = '🎮 Игрок';
+            badge = '<span class="badge badge-user">USER</span>';
         }
+
+        roleEl.innerHTML = roleText + ' ' + badge;
     }
 
     // =======================================================
