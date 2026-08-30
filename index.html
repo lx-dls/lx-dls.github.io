@@ -29,7 +29,7 @@
             border: 1px solid #6a3f9e;
             box-shadow: 0 0 60px rgba(106, 63, 158, 0.25);
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             text-align: center;
         }
 
@@ -42,47 +42,13 @@
         .sub {
             color: #8b7aa8;
             font-size: 14px;
-            margin-bottom: 25px;
-        }
-
-        /* ===== НОВОСТЬ ===== */
-        .news-box {
-            background: #120b1f;
-            border-radius: 16px;
-            padding: 30px 25px;
-            border: 2px dashed #6a3f9e;
             margin-bottom: 20px;
         }
 
-        .news-box .icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .news-box h2 {
-            color: #b78cf5;
-            font-size: 22px;
-            margin-bottom: 8px;
-        }
-
-        .news-box p {
-            color: #8b7aa8;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .news-box .date {
-            color: #5a4a72;
-            font-size: 12px;
-            margin-top: 12px;
-            display: block;
-        }
-
-        /* ===== КНОПКИ ===== */
         .btn {
-            display: inline-block;
-            padding: 14px 30px;
+            display: block;
+            width: 100%;
+            padding: 14px;
             background: #6a3f9e;
             color: #fff;
             border: none;
@@ -92,7 +58,6 @@
             cursor: pointer;
             transition: 0.3s;
             text-decoration: none;
-            width: 100%;
             margin-bottom: 10px;
         }
 
@@ -125,41 +90,125 @@
         .btn-outline {
             background: transparent;
             border: 2px solid #6a3f9e;
+            color: #fff;
         }
         .btn-outline:hover {
             background: #6a3f9e;
         }
 
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 15px;
+        .btn-locked {
+            background: #3a2852;
+            color: #6a5a7a;
+            cursor: not-allowed;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .btn-locked::after {
+            content: " 🔒";
+            color: #6a5a7a;
         }
 
-        /* ===== СТАТУС ===== */
+        .news-box {
+            background: #120b1f;
+            border-radius: 16px;
+            padding: 20px 18px;
+            border: 2px dashed #6a3f9e;
+            margin-bottom: 15px;
+        }
+
+        .news-box .icon {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .news-box h2 {
+            color: #b78cf5;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .news-box p {
+            color: #8b7aa8;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* ===== ПРОФИЛЬ ===== */
+        .profile-card {
+            background: #120b1f;
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid #6a3f9e;
+            margin-bottom: 12px;
+        }
+
+        .profile-card .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #6a3f9e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 6px;
+            color: #fff;
+        }
+
+        .profile-card .name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #b78cf5;
+        }
+
+        .profile-card .role {
+            font-size: 13px;
+            color: #8b7aa8;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .badge-admin {
+            background: #f39c12;
+            color: #0f0a1a;
+        }
+        .badge-beta {
+            background: #2ecc71;
+            color: #0f0a1a;
+        }
+        .badge-user {
+            background: #3a2852;
+            color: #fff;
+        }
+
         .status {
             color: #5a4a72;
             font-size: 13px;
-            margin-top: 15px;
+            margin-top: 12px;
         }
         .status .online {
             color: #2ecc71;
         }
 
-        /* ===== ССЫЛКИ ===== */
         .links {
-            margin-top: 15px;
+            margin-top: 12px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
         }
         .links a {
             color: #b78cf5;
             text-decoration: none;
-            font-size: 14px;
-            padding: 6px 18px;
+            font-size: 13px;
+            padding: 5px 16px;
             border-radius: 30px;
             border: 1px solid #6a3f9e;
             transition: 0.3s;
@@ -171,11 +220,11 @@
 
         .footer {
             color: #5a4a72;
-            font-size: 13px;
-            margin-top: 20px;
+            font-size: 12px;
+            margin-top: 15px;
         }
 
-        /* ===== МОДАЛКА ВХОДА ===== */
+        /* ===== МОДАЛКА ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -183,19 +232,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             z-index: 999;
             justify-content: center;
             align-items: center;
         }
-
         .modal-overlay.active {
             display: flex;
         }
 
         .modal {
             background: #1e1233;
-            padding: 35px 30px;
+            padding: 28px 24px;
             border-radius: 24px;
             border: 1px solid #6a3f9e;
             max-width: 400px;
@@ -205,126 +253,87 @@
 
         .modal h2 {
             color: #b78cf5;
-            font-size: 24px;
             text-align: center;
-            margin-bottom: 20px;
+            font-size: 22px;
+            margin-bottom: 14px;
         }
 
-        .modal .form-group {
-            margin-bottom: 15px;
-        }
-
-        .modal .form-group label {
-            display: block;
-            color: #8b7aa8;
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .modal .form-group input {
+        .modal input {
             width: 100%;
             padding: 12px 16px;
             border-radius: 12px;
             border: 1px solid #3a2852;
             background: #120b1f;
             color: #fff;
-            font-size: 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
             outline: none;
         }
-
-        .modal .form-group input:focus {
+        .modal input:focus {
             border-color: #8b5fcf;
         }
 
-        .modal .btn-close {
-            background: #e74c3c;
-            margin-top: 10px;
-        }
-        .modal .btn-close:hover {
-            background: #c0392b;
-        }
-
         .modal .switch {
-            text-align: center;
-            margin-top: 12px;
             color: #8b7aa8;
-            font-size: 14px;
+            font-size: 13px;
+            margin-top: 10px;
         }
         .modal .switch a {
             color: #b78cf5;
             cursor: pointer;
-            font-weight: 600;
         }
 
-        .modal #modalMsg {
+        .modal #msg {
             text-align: center;
-            margin-top: 12px;
+            margin-top: 10px;
             font-size: 14px;
             font-weight: 600;
-            min-height: 22px;
+            min-height: 20px;
         }
 
         .hidden {
             display: none !important;
         }
 
-        .profile-section {
-            display: none;
-        }
-        .profile-section.active {
-            display: block;
-        }
-
-        .main-section {
-            display: block;
-        }
-        .main-section.hidden {
-            display: none;
-        }
-
-        /* ===== БЕЙДЖИ ===== */
-        .badge {
-            display: inline-block;
-            padding: 3px 14px;
-            border-radius: 40px;
-            font-size: 12px;
-            font-weight: 700;
-            margin-left: 6px;
-        }
-
-        .badge-admin {
-            background: #f39c12;
-            color: #0f0a1a;
-        }
-
-        .badge-user {
-            background: #3a2852;
-            color: #8b7aa8;
-        }
-
-        .badge-beta {
-            background: #2ecc71;
-            color: #0f0a1a;
-        }
-
-        /* ===== ИНСТРУКЦИЯ ПОСЛЕ ОПЛАТЫ ===== */
-        .pay-info {
+        /* ===== АДМИН-ПАНЕЛЬ ===== */
+        .admin-panel {
             background: #120b1f;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 10px 0;
-            border-left: 3px solid #f39c12;
-            text-align: left;
+            border-radius: 14px;
+            padding: 14px;
+            border: 2px solid #f39c12;
+            margin-bottom: 12px;
         }
 
-        .pay-info p {
-            color: #8b7aa8;
-            font-size: 13px;
-            line-height: 1.5;
+        .admin-panel h3 {
+            color: #f39c12;
+            font-size: 14px;
+            margin-bottom: 8px;
         }
 
-        .pay-info strong {
+        .admin-panel .user-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 8px;
+            background: #0f0a1a;
+            border-radius: 6px;
+            margin-bottom: 3px;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .admin-panel .user-row .name {
             color: #b78cf5;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .admin-panel .user-row .btn {
+            padding: 2px 10px;
+            font-size: 10px;
+            width: auto;
+            margin-bottom: 0;
+            border-radius: 6px;
         }
     </style>
 </head>
@@ -333,25 +342,20 @@
 <div class="container">
 
     <!-- ===== ГЛАВНАЯ ===== -->
-    <div id="mainSection">
+    <div id="main">
         <h1>🚀 CRASH DLC</h1>
         <div class="sub">Установи клиент и участвуй в бета-тесте</div>
 
         <div class="news-box">
             <span class="icon">⚙️</span>
             <h2>В разработке</h2>
-            <p>
-                Мы работаем над новой версией CRASH DLC.<br>
-                Добавляем уникальные функции и улучшаем анти-бан.
-            </p>
-            <span class="date">📅 30 августа 2026</span>
+            <p>Мы работаем над новой версией CRASH DLC.</p>
         </div>
 
+        <button class="btn btn-locked">📥 Установить</button>
         <button class="btn" onclick="openModal()">🔑 Войти</button>
 
-        <div class="status">
-            <span class="online">●</span> Сервер: <span class="online">онлайн</span>
-        </div>
+        <div class="status"><span class="online">●</span> Сервер: онлайн</div>
 
         <div class="links">
             <a href="https://discord.gg/DanFgwuyd" target="_blank">💬 Discord</a>
@@ -361,36 +365,27 @@
         <div class="footer">© 2026 CRASH DLC</div>
     </div>
 
-    <!-- ===== ПРОФИЛЬ (ПОСЛЕ ВХОДА) ===== -->
-    <div id="profileSection" class="profile-section">
+    <!-- ===== ПРОФИЛЬ ===== -->
+    <div id="profile" class="hidden">
         <h1>🚀 CRASH DLC</h1>
         <div class="sub">Твой профиль</div>
 
-        <div class="profile" style="background:#120b1f; border-radius:16px; padding:25px; border:1px solid #6a3f9e; margin-bottom:20px;">
-            <div style="width:70px; height:70px; border-radius:50%; background:#6a3f9e; display:flex; align-items:center; justify-content:center; font-size:32px; font-weight:700; margin:0 auto 10px;" id="profileAvatar">L</div>
-            <div style="font-size:22px; font-weight:700; color:#b78cf5;" id="profileName">Логин</div>
-            <div style="font-size:14px; color:#8b7aa8; margin-top:4px;" id="profileRole">🎮 Игрок</div>
-            <div style="color:#2ecc71; font-size:13px; margin-top:6px;">● В сети</div>
+        <div class="profile-card">
+            <div class="avatar" id="avatar">L</div>
+            <div class="name" id="name">Логин</div>
+            <div class="role" id="role">🎮 Игрок</div>
         </div>
 
-        <!-- ===== КНОПКА ПОКУПКИ БЕТЫ ===== -->
-        <a href="https://www.donationalerts.com/r/crashdlc" target="_blank" class="btn btn-gold">
-            🛒 Купить Бета-тест 1.21.11 (300 ₽)
-        </a>
-
-        <!-- ===== ИНСТРУКЦИЯ ===== -->
-        <div class="pay-info">
-            <p>📌 <strong>Как получить доступ:</strong></p>
-            <p>1️⃣ Оплати 300 ₽ по кнопке выше</p>
-            <p>2️⃣ Напиши в <strong>Telegram</strong> <a href="https://t.me/crashDLC" target="_blank" style="color:#b78cf5;">@crashDLC</a> или <strong>Discord</strong> с чеком</p>
-            <p>3️⃣ Тебе выдадут статус <strong>«Бета-клиент»</strong> навсегда!</p>
+        <!-- АДМИН-ПАНЕЛЬ -->
+        <div id="adminPanel" class="admin-panel hidden">
+            <h3>👑 Админ-панель</h3>
+            <div id="userList"></div>
         </div>
 
+        <a href="https://www.donationalerts.com/r/crashdlc" target="_blank" class="btn btn-gold">💰 Донат</a>
         <button class="btn btn-red" onclick="logout()">🚪 Выйти</button>
 
-        <div class="status" style="margin-top:15px;">
-            <span class="online">●</span> Сервер: <span class="online">онлайн</span>
-        </div>
+        <div class="status"><span class="online">●</span> Сервер: онлайн</div>
 
         <div class="links">
             <a href="https://discord.gg/DanFgwuyd" target="_blank">💬 Discord</a>
@@ -407,169 +402,140 @@
     <div class="modal">
         <h2 id="modalTitle">🔐 Вход</h2>
 
-        <div id="modalLogin">
-            <div class="form-group">
-                <label>👤 Логин</label>
-                <input type="text" id="modalLoginName" placeholder="Введите логин">
-            </div>
-            <div class="form-group">
-                <label>🔑 Пароль</label>
-                <input type="password" id="modalLoginPass" placeholder="Введите пароль">
-            </div>
-            <button class="btn" onclick="modalLogin()">Войти</button>
-            <div class="switch">Нет аккаунта? <a onclick="modalShowRegister()">Зарегистрируйся</a></div>
+        <div id="loginForm">
+            <input type="text" id="loginName" placeholder="Логин">
+            <input type="password" id="loginPass" placeholder="Пароль">
+            <button class="btn" onclick="login()">Войти</button>
+            <div class="switch">Нет аккаунта? <a onclick="showRegister()">Зарегистрируйся</a></div>
         </div>
 
-        <div id="modalRegister" class="hidden">
-            <div class="form-group">
-                <label>👤 Логин</label>
-                <input type="text" id="modalRegName" placeholder="Придумай логин">
-            </div>
-            <div class="form-group">
-                <label>📧 Почта</label>
-                <input type="email" id="modalRegEmail" placeholder="Введи почту">
-            </div>
-            <div class="form-group">
-                <label>🔑 Пароль</label>
-                <input type="password" id="modalRegPass" placeholder="Придумай пароль">
-            </div>
-            <div class="form-group">
-                <label>🔁 Повтори пароль</label>
-                <input type="password" id="modalRegPass2" placeholder="Повтори пароль">
-            </div>
-            <button class="btn btn-green" onclick="modalRegister()">Зарегистрироваться</button>
-            <div class="switch">Уже есть аккаунт? <a onclick="modalShowLogin()">Войти</a></div>
+        <div id="registerForm" class="hidden">
+            <input type="text" id="regName" placeholder="Логин">
+            <input type="email" id="regEmail" placeholder="Почта">
+            <input type="password" id="regPass" placeholder="Пароль">
+            <input type="password" id="regPass2" placeholder="Повтори пароль">
+            <button class="btn btn-green" onclick="register()">Зарегистрироваться</button>
+            <div class="switch">Уже есть аккаунт? <a onclick="showLogin()">Войти</a></div>
         </div>
 
-        <div id="modalMsg"></div>
-        <button class="btn btn-close" onclick="closeModal()">✖ Закрыть</button>
+        <div id="msg"></div>
+        <button class="btn btn-red" onclick="closeModal()">✖ Закрыть</button>
     </div>
 </div>
 
 <script>
-    // =======================================================
-    // ===== АДМИНЫ =====
-    // =======================================================
+    // =============================================
+    // === ДАННЫЕ ===
+    // =============================================
 
     const ADMINS = ['lxneo', 'fridiz'];
-    const BETA_USERS = ['lxneo', 'fridiz']; // Сюда добавляешь тех, кто купил бету
+    let BETA_USERS = ['lxneo', 'fridiz'];
+    let currentUser = null;
 
-    // =======================================================
-    // ===== МОДАЛКА =====
-    // =======================================================
+    function getUsers() {
+        return JSON.parse(localStorage.getItem('users') || '[]');
+    }
+
+    function saveUsers(u) {
+        localStorage.setItem('users', JSON.stringify(u));
+    }
+
+    // =============================================
+    // === МОДАЛКА ===
+    // =============================================
 
     function openModal() {
         document.getElementById('loginModal').classList.add('active');
-        document.getElementById('modalMsg').textContent = '';
-        modalShowLogin();
+        document.getElementById('msg').textContent = '';
+        showLogin();
     }
 
     function closeModal() {
         document.getElementById('loginModal').classList.remove('active');
     }
 
-    function modalShowLogin() {
-        document.getElementById('modalLogin').classList.remove('hidden');
-        document.getElementById('modalRegister').classList.add('hidden');
+    function showLogin() {
+        document.getElementById('loginForm').classList.remove('hidden');
+        document.getElementById('registerForm').classList.add('hidden');
         document.getElementById('modalTitle').textContent = '🔐 Вход';
-        document.getElementById('modalMsg').textContent = '';
+        document.getElementById('msg').textContent = '';
     }
 
-    function modalShowRegister() {
-        document.getElementById('modalLogin').classList.add('hidden');
-        document.getElementById('modalRegister').classList.remove('hidden');
+    function showRegister() {
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('registerForm').classList.remove('hidden');
         document.getElementById('modalTitle').textContent = '📝 Регистрация';
-        document.getElementById('modalMsg').textContent = '';
+        document.getElementById('msg').textContent = '';
     }
 
-    // =======================================================
-    // ===== ДАННЫЕ =====
-    // =======================================================
+    // =============================================
+    // === РЕГИСТРАЦИЯ ===
+    // =============================================
 
-    function getUsers() {
-        return JSON.parse(localStorage.getItem('users') || '[]');
-    }
+    function register() {
+        const n = document.getElementById('regName').value.trim();
+        const e = document.getElementById('regEmail').value.trim();
+        const p = document.getElementById('regPass').value;
+        const p2 = document.getElementById('regPass2').value;
+        const msg = document.getElementById('msg');
 
-    function saveUsers(users) {
-        localStorage.setItem('users', JSON.stringify(users));
-    }
-
-    let currentUser = null;
-
-    // =======================================================
-    // ===== РЕГИСТРАЦИЯ =====
-    // =======================================================
-
-    function modalRegister() {
-        const name = document.getElementById('modalRegName').value.trim();
-        const email = document.getElementById('modalRegEmail').value.trim();
-        const pass = document.getElementById('modalRegPass').value;
-        const pass2 = document.getElementById('modalRegPass2').value;
-        const msg = document.getElementById('modalMsg');
-
-        if (!name || !email || !pass || !pass2) {
+        if (!n || !e || !p || !p2) {
             msg.textContent = '❌ Заполни все поля!';
             msg.style.color = '#e74c3c';
             return;
         }
-        if (pass.length < 4) {
+        if (p.length < 4) {
             msg.textContent = '❌ Пароль минимум 4 символа!';
             msg.style.color = '#e74c3c';
             return;
         }
-        if (pass !== pass2) {
+        if (p !== p2) {
             msg.textContent = '❌ Пароли не совпадают!';
             msg.style.color = '#e74c3c';
             return;
         }
 
         const users = getUsers();
-        if (users.find(u => u.name === name)) {
-            msg.textContent = '❌ Такой логин уже занят!';
+        if (users.find(u => u.name === n)) {
+            msg.textContent = '❌ Логин занят!';
             msg.style.color = '#e74c3c';
             return;
         }
 
-        users.push({
-            name: name,
-            email: email,
-            password: pass,
-            date: new Date().toLocaleDateString('ru-RU')
-        });
+        users.push({ name: n, email: e, password: p });
         saveUsers(users);
 
-        msg.textContent = '✅ Регистрация успешна! Теперь войди.';
+        msg.textContent = '✅ Регистрация успешна! Войди.';
         msg.style.color = '#2ecc71';
-
         setTimeout(() => {
-            document.getElementById('modalLoginName').value = name;
-            modalShowLogin();
+            document.getElementById('loginName').value = n;
+            showLogin();
             msg.textContent = '';
-        }, 1500);
+        }, 1200);
     }
 
-    // =======================================================
-    // ===== ВХОД =====
-    // =======================================================
+    // =============================================
+    // === ВХОД ===
+    // =============================================
 
-    function modalLogin() {
-        const name = document.getElementById('modalLoginName').value.trim();
-        const pass = document.getElementById('modalLoginPass').value.trim();
-        const msg = document.getElementById('modalMsg');
+    function login() {
+        const n = document.getElementById('loginName').value.trim();
+        const p = document.getElementById('loginPass').value.trim();
+        const msg = document.getElementById('msg');
 
-        if (!name || !pass) {
+        if (!n || !p) {
             msg.textContent = '❌ Заполни все поля!';
             msg.style.color = '#e74c3c';
             return;
         }
 
         const users = getUsers();
-        const user = users.find(u => u.name === name && u.password === pass);
+        const user = users.find(u => u.name === n && u.password === p);
 
         if (user) {
             currentUser = user;
             localStorage.setItem('currentUser', JSON.stringify(user));
-            msg.textContent = '✅ Добро пожаловать, ' + name + '!';
+            msg.textContent = '✅ Добро пожаловать, ' + n + '!';
             msg.style.color = '#2ecc71';
             setTimeout(() => {
                 closeModal();
@@ -581,87 +547,123 @@
         }
     }
 
-    // =======================================================
-    // ===== ПРОФИЛЬ =====
-    // =======================================================
+    // =============================================
+    // === ПРОФИЛЬ ===
+    // =============================================
 
     function showProfile() {
         if (!currentUser) return;
 
-        document.getElementById('mainSection').classList.add('hidden');
-        document.getElementById('profileSection').classList.add('active');
+        document.getElementById('main').classList.add('hidden');
+        document.getElementById('profile').classList.remove('hidden');
 
-        const avatar = document.getElementById('profileAvatar');
-        const nameEl = document.getElementById('profileName');
-        const roleEl = document.getElementById('profileRole');
-
-        avatar.textContent = currentUser.name.charAt(0).toUpperCase();
-        nameEl.textContent = currentUser.name;
+        document.getElementById('avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+        document.getElementById('name').textContent = currentUser.name;
 
         const isAdmin = ADMINS.includes(currentUser.name);
         const isBeta = BETA_USERS.includes(currentUser.name);
 
-        let roleText = '';
-        let badge = '';
-
+        let role = '🎮 Игрок';
+        let badge = '<span class="badge badge-user">USER</span>';
         if (isAdmin) {
-            roleText = '👑 Администратор';
+            role = '👑 Администратор';
             badge = '<span class="badge badge-admin">ADMIN</span>';
         } else if (isBeta) {
-            roleText = '🧪 Бета-клиент';
+            role = '🧪 Бета-клиент';
             badge = '<span class="badge badge-beta">BETA</span>';
-        } else {
-            roleText = '🎮 Игрок';
-            badge = '<span class="badge badge-user">USER</span>';
         }
 
-        roleEl.innerHTML = roleText + ' ' + badge;
+        document.getElementById('role').innerHTML = role + ' ' + badge;
+
+        const panel = document.getElementById('adminPanel');
+        if (isAdmin) {
+            panel.classList.remove('hidden');
+            renderAdmin();
+        } else {
+            panel.classList.add('hidden');
+        }
     }
 
-    // =======================================================
-    // ===== ВЫХОД =====
-    // =======================================================
+    // =============================================
+    // === АДМИН-ПАНЕЛЬ ===
+    // =============================================
+
+    function renderAdmin() {
+        const list = document.getElementById('userList');
+        const users = getUsers();
+
+        if (users.length === 0) {
+            list.innerHTML = '<p style="color:#5a4a72; font-size:12px;">Нет пользователей</p>';
+            return;
+        }
+
+        list.innerHTML = users.map(u => {
+            const isAdmin = ADMINS.includes(u.name);
+            const isBeta = BETA_USERS.includes(u.name);
+            let tag = isAdmin ? '👑' : isBeta ? '🧪' : '👤';
+            return `
+                <div class="user-row">
+                    <span class="name">${u.name} ${tag}</span>
+                    <div>
+                        <button class="btn btn-gold" onclick="setRole('${u.name}','admin')" style="padding:2px 8px;font-size:9px;">👑</button>
+                        <button class="btn btn-green" onclick="setRole('${u.name}','beta')" style="padding:2px 8px;font-size:9px;">🧪</button>
+                        <button class="btn btn-outline" onclick="setRole('${u.name}','user')" style="padding:2px 8px;font-size:9px;">👤</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function setRole(name, role) {
+        if (role === 'admin') {
+            if (!ADMINS.includes(name)) ADMINS.push(name);
+            if (BETA_USERS.includes(name)) BETA_USERS = BETA_USERS.filter(u => u !== name);
+        } else if (role === 'beta') {
+            if (!BETA_USERS.includes(name)) BETA_USERS.push(name);
+            if (ADMINS.includes(name) && !['lxneo','fridiz'].includes(name)) {
+                ADMINS.splice(ADMINS.indexOf(name), 1);
+            }
+        } else {
+            if (BETA_USERS.includes(name)) BETA_USERS = BETA_USERS.filter(u => u !== name);
+            if (ADMINS.includes(name) && !['lxneo','fridiz'].includes(name)) {
+                ADMINS.splice(ADMINS.indexOf(name), 1);
+            }
+        }
+        if (currentUser && currentUser.name === name) showProfile();
+        renderAdmin();
+    }
+
+    // =============================================
+    // === ВЫХОД ===
+    // =============================================
 
     function logout() {
         localStorage.removeItem('currentUser');
         currentUser = null;
-        document.getElementById('mainSection').classList.remove('hidden');
-        document.getElementById('profileSection').classList.remove('active');
+        document.getElementById('main').classList.remove('hidden');
+        document.getElementById('profile').classList.add('hidden');
     }
 
-    // =======================================================
-    // ===== ENTER =====
-    // =======================================================
+    // =============================================
+    // === ENTER / ESC ===
+    // =============================================
 
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             if (!document.getElementById('loginModal').classList.contains('active')) return;
-
-            if (!document.getElementById('modalLogin').classList.contains('hidden')) {
-                modalLogin();
-            } else {
-                modalRegister();
-            }
+            if (!document.getElementById('loginForm').classList.contains('hidden')) login();
+            else register();
         }
-
-        if (e.key === 'Escape') {
-            closeModal();
-        }
+        if (e.key === 'Escape') closeModal();
     });
-
-    // =======================================================
-    // ===== КЛИК ВНЕ МОДАЛКИ =====
-    // =======================================================
 
     document.getElementById('loginModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
+        if (e.target === this) closeModal();
     });
 
-    // =======================================================
-    // ===== СТАРТ =====
-    // =======================================================
+    // =============================================
+    // === СТАРТ ===
+    // =============================================
 
     const saved = localStorage.getItem('currentUser');
     if (saved) {
